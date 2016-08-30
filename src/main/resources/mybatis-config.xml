@@ -6,7 +6,7 @@
 	
 	<settings> 
 		<!-- 允许JDBC生成主键 -->
-		<setting name="useGenerateKeys" value="true"/>
+		<setting name="useGeneratedKeys" value="true"/>
 	</settings>
 
 </configuration>

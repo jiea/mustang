@@ -22,18 +22,17 @@
 
 		<!-- 生成实体类地址 -->
 		<javaModelGenerator targetPackage="com.jiea.mustang.entity" targetProject="mustang" />
-		<!-- 生成MapXml地址 -->
-		<sqlMapGenerator targetPackage="com.jiea.mustang.dao" targetProject="mustang" />
+		<!-- 生成Mapper地址 -->
+		<sqlMapGenerator targetPackage="com.jiea.mustang.mapper" targetProject="mustang" />
 		<!-- 生成dao接口地址 -->
 		<javaClientGenerator targetPackage="com.jiea.mustang.dao" targetProject="mustang" type="XMLMAPPER" />
 
 		<!-- 配置表信息 -->
 		<!-- schema数据库名 tableName表名 domainObjectName实体类名 enable*ByExample 是否生成 example类 -->
-		<table schema="jyskf" tableName="jys_signature_book" domainObjectName="SignatureBook" enableCountByExample="false"
+		<table schema="mustang_dev" tableName="t_role" domainObjectName="Role" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
 
-		<table schema="jyskf" tableName="jys_signature_profile" domainObjectName="SignatureProfile" enableCountByExample="false"
+		<table schema="mustang_dev" tableName="t_menu_role" domainObjectName="MenuRole" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
-
 	</context>
 </generatorConfiguration>
