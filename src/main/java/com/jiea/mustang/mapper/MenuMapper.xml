@@ -15,20 +15,33 @@
     <result column="operator" property="operator" jdbcType="INTEGER" />
     <result column="memo" property="memo" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
-    id, name_en, name_zh, menu_url, parent_id, menu_icon, menu_sort, create_time, creator, 
-    operate_time, operator, memo
-  </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from t_menu
-    where id = #{id,jdbcType=INTEGER}
+  
+  <!-- 通过父id查询菜单 -->
+  <select id="findMenuByParentId" resultType="Menu">
+  	SELECT id, name_zh, menu_icon FROM t_menu WHERE id IN 
+  	<foreach item="item" index="index" collection="list" open="(" separator="," close=")">
+        #{item}
+  	</foreach>
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_menu
-    where id = #{id,jdbcType=INTEGER}
-  </delete>
+  
+  <!-- 通过用户主键查询菜单 -->
+  <select id="findMenuByEmpId" parameterType="integer" resultType="Menu">
+  	SELECT 
+	  m.id,
+	  m.name_en,
+	  m.name_zh,
+	  m.menu_url,
+	  m.parent_id,
+	  m.menu_icon
+	FROM
+	  t_emp_role ur 
+	  JOIN t_menu_role mr 
+	    ON ur.role_id = mr.role_id 
+	  JOIN t_menu m 
+	    ON mr.menu_id = m.id 
+	    WHERE ur.emp_id = #{empId};
+  </select>
+  
   <insert id="insert" parameterType="com.jiea.mustang.entity.Menu" >
     insert into t_menu (id, name_en, name_zh, 
       menu_url, parent_id, menu_icon, 
@@ -157,21 +170,6 @@
         memo = #{memo,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.jiea.mustang.entity.Menu" >
-    update t_menu
-    set name_en = #{nameEn,jdbcType=VARCHAR},
-      name_zh = #{nameZh,jdbcType=VARCHAR},
-      menu_url = #{menuUrl,jdbcType=VARCHAR},
-      parent_id = #{parentId,jdbcType=INTEGER},
-      menu_icon = #{menuIcon,jdbcType=VARCHAR},
-      menu_sort = #{menuSort,jdbcType=INTEGER},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      creator = #{creator,jdbcType=INTEGER},
-      operate_time = #{operateTime,jdbcType=TIMESTAMP},
-      operator = #{operator,jdbcType=INTEGER},
-      memo = #{memo,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -16,3 +16,15 @@ target/classes/mybatis-config.xml
 target/classes/spring/spring-dao.xml
 target/classes/spring/spring-web.xml
 target/m2e-wtp/web-resources/META-INF/maven/com.jia/mustang/pom.xml
+target/classes/com/jiea/mustang/dao/MenuMapper.class
+*.class
+target/classes/com/jiea/mustang/mapper/RoleMapper.xml
+target/classes/com/jiea/mustang/mapper/MenuRoleMapper.xml
+target/classes/com/jiea/mustang/mapper/EmpRoleMapper.xml
+target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+target/classes/com/jiea/mustang/mapper/MenuMapper.xml
+target/classes/spring/spring-service.xml
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst
+target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst
+target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+target/classes/com/jiea/mustang/mapper/EmpMapper.xml

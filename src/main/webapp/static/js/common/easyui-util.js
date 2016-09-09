@@ -57,7 +57,7 @@ function alertMsg(msg, msgType) {
 }
 
 // 系统错误提示信息
-function alertSysErrorMsg() {
+function alertSysErrMsg() {
 	$.messager.alert('提示信息', '系统错误, 请联系管理员', 'error');
 }
 

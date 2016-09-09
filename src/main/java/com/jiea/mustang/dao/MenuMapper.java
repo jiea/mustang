@@ -1,17 +1,18 @@
 package com.jiea.mustang.dao;
 
+import java.util.List;
+
 import com.jiea.mustang.entity.Menu;
 
 public interface MenuMapper {
-	int deleteByPrimaryKey(Integer id);
-
-	int insert(Menu record);
-
-	int insertSelective(Menu record);
-
-	Menu selectByPrimaryKey(Integer id);
-
-	int updateByPrimaryKeySelective(Menu record);
-
-	int updateByPrimaryKey(Menu record);
+	
+	/**
+	 * 通过用户主键查询菜单
+	 */
+	List<Menu> findMenuByEmpId(Integer empId);
+	
+	/*
+	 * 通过父id查询菜单
+	 */
+	List<Menu> findMenuByParentId(List<Integer> menuPid);
 }

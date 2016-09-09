@@ -1,5 +1,7 @@
 package com.jiea.mustang.entity;
 
+import java.util.List;
+
 public class Menu extends Entity {
 
 	private String nameEn;
@@ -15,6 +17,8 @@ public class Menu extends Entity {
 	private Integer menuSort;
 
 	private String memo;
+	
+	private List<Menu> menus;
 
 	public String getNameEn() {
 		return nameEn;
@@ -71,4 +75,13 @@ public class Menu extends Entity {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
+
+	public List<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(List<Menu> menus) {
+		this.menus = menus;
+	}
+	
 }
