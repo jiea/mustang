@@ -68,9 +68,9 @@
 	    $('#nav').accordion('select', t);
 	}
 	
-	    $('#nav').accordion({
-	        animate:false
-	    });
+    $('#nav').accordion({
+        animate:false
+    });
 	</script>
 </body>
 </html>

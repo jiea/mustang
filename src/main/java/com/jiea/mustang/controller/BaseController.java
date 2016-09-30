@@ -4,14 +4,10 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
 
 import com.jiea.mustang.entity.Emp;
 
 
-
-
-@Controller
 public class BaseController {
 	
 	protected HttpSession session;
