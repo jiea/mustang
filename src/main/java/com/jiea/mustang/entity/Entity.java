@@ -10,7 +10,7 @@ public class Entity {
 
 	private Integer creator;
 
-	private Date operTime;
+	private Date operateTime;
 
 	private Integer operator;
 
@@ -38,12 +38,12 @@ public class Entity {
 		this.creator = creator;
 	}
 
-	public Date getOperTime() {
-		return operTime;
+	public Date getOperateTime() {
+		return operateTime;
 	}
 
-	public void setOperTime(Date operTime) {
-		this.operTime = operTime;
+	public void setOperateTime(Date operateTime) {
+		this.operateTime = operateTime;
 	}
 
 	public Integer getOperator() {

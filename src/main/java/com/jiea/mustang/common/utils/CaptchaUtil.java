@@ -202,11 +202,19 @@ public class CaptchaUtil {
 				g.drawLine(xs, ys, xe, ye);
 			}
 		}
+		
+		// 添加噪点
+//		float yawpRate = 0.03f;// 噪声率
+//		int area = (int) (yawpRate * width * height);
+//		for (int i = 0; i < area; i++) {
+//			int x = r.nextInt(width);
+//			int y = r.nextInt(height);
+//
+//			bim.setRGB(x, y, r.nextInt(255));
+//		}
 
 		// 写验证码
 		shear(g, width, height, getRandomColor());
-		// g.setColor(getRandomColor());
-		// g.setColor(isSimpleColor?Color.BLACK:Color.WHITE);
 
 		// 字体大小为图片高度的80%
 		int fsize = (int) (height * 0.8);
@@ -221,6 +229,19 @@ public class CaptchaUtil {
 			g.setColor(foreColor == null ? getRandomColor() : foreColor);
 			g.drawString(textCode.charAt(i) + "", fx, fy);
 			fx += fsize * 0.9;
+		}
+		
+		// 扭曲
+		double dMultValue = new Random().nextInt(7) + 5;// 波形的幅度倍数，越大扭曲的程序越高，一般为3
+		double dPhase = 3; // 波形的起始相位，取值区间（0-2＊PI）
+		for (int i = 0; i < bim.getWidth(); i++) {
+			for (int j = 0; j < bim.getHeight(); j++) {
+				int nOldX = getXPosition4Twist(dPhase, dMultValue, bim.getHeight(), i, j);
+				int nOldY = j;
+				if (nOldX >= 0 && nOldX < bim.getWidth() && nOldY >= 0 && nOldY < bim.getHeight()) {
+					bim.setRGB(nOldX, nOldY, bim.getRGB(i, j));
+				}
+			}
 		}
 
 		g.dispose();
@@ -325,4 +346,12 @@ public class CaptchaUtil {
         }
 
     }
+    
+    // 图片扭曲
+    private static int getXPosition4Twist(double dPhase, double dMultValue, int height, int xPosition, int yPosition) {
+		double PI = 3.1415926535897932384626433832799; // 此值越大，扭曲程度越大
+		double dx = (double) (PI * yPosition) / height + dPhase;
+		double dy = Math.sin(dx);
+		return xPosition + (int) (dy * dMultValue);
+	}
 }

@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.jiea.mustang.entity.Menu;
 import com.jiea.mustang.service.MenuService;
 
-@RequestMapping("/menu")
+@Controller
+@RequestMapping("menu")
 public class MenuController extends BaseController{
 	
 	@Autowired
@@ -52,10 +54,10 @@ public class MenuController extends BaseController{
 	 * 加载菜单
 	 */
 	@ResponseBody
-	@RequestMapping("/load")
+	@RequestMapping("load")
 	public List<Menu> load(){
 		List<Menu> menuList = new ArrayList<>();
-		List<Menu> childMenuList = menuService.findMenuByEmpId(super.getEmp().getId());		// 查找所有子菜单
+		List<Menu> childMenuList = menuService.findMenuByEmpId(1);	//super.getEmp().getId()	// 查找所有子菜单
 		
 		if(childMenuList != null && childMenuList.size() != 0){
 			List<Integer> menuPid = new ArrayList<>();

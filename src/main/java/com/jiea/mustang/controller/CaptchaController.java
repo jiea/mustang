@@ -10,6 +10,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jiea.mustang.common.constants.SystemConst;
 import com.jiea.mustang.common.utils.CaptchaUtil;
 
 @Controller
@@ -29,8 +30,8 @@ public class CaptchaController extends BaseController {
 		response.setDateHeader("Expires",0);   
 		
 		String captcha = CaptchaUtil.generateTextCode(CaptchaUtil.TYPE_ALL_MIXED, 4, "0oOl1");
-		session.setAttribute("captcha", captcha);
-		ImageIO.write(CaptchaUtil.generateImageCode(captcha, 90, 30, 10,true,Color.WHITE,Color.BLACK,null),"JPEG",response.getOutputStream());
+		session.setAttribute(SystemConst.CAPTCHA, captcha);
+		ImageIO.write(CaptchaUtil.generateImageCode(captcha, 90, 30, 5,true,Color.WHITE,Color.BLACK,null),"JPEG",response.getOutputStream());
 	}
 	
 }

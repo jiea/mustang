@@ -1,18 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	session.setAttribute("path", request.getContextPath());
+	session.setAttribute("ctx", request.getContextPath());
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Mustang</title>
-<link rel="shortcut icon" type="image/x-icon" href="${path}/static/img/favicon.ico" />
+<link rel="shortcut icon" type="image/x-icon" href="${ctx}/static/img/favicon.ico" />
 <%@ include file="/WEB-INF/jsp/common/easyui.jsp"%>
 </head>
 <body class="easyui-layout">
 	<div id="global-mask" style="position:absolute; top:0px; left:0px; width:100%; height:100%; background:#ccc; z-index:1000">
-		<div id="global-mask-msg" style="position:absolute; top:50%; left:50%; margin:-30px 0px 0px -85px; text-align:center; border:2px solid #FF8901; width:auto; height:16px; line-height:16px; font-size:12px; padding:12px 5px 10px 30px; background: #fff url('static/js/jquery-easyui-1.4.2/themes/default/images/loading.gif') no-repeat scroll 5px center; font-weight:bold; color:#31B2F6;">正在处理，请稍待。。。</div>
+		<div id="global-mask-msg" style="position:absolute; top:50%; left:50%; margin:-30px 0px 0px -85px; text-align:center; border:2px solid #FF8901; width:auto; height:16px; line-height:16px; font-size:12px; padding:12px 5px 10px 30px; background: #fff url('static/js/jquery-easyui-1.5/themes/default/images/loading.gif') no-repeat scroll 5px center; font-weight:bold; color:#31B2F6;">正在处理，请稍待。。。</div>
 	</div>
 	<div data-options="region:'north', border:true" style="height: 65px; width: 100%">
 		<%@ include file="/WEB-INF/jsp/layout/north.jsp"%>
@@ -36,7 +36,7 @@
 		<div id="closeRightAll" data-options="iconCls:''">关闭右侧标签</div>
 	</div>
 	<script type="text/javascript" charset="UTF-8">
-		var path = '${path}';
+		var ctx = '${ctx}';
 		var tree = $('#tree');
 		var tabs = $('#tabs');
 		var menu = $('#menu');
@@ -55,20 +55,22 @@
 		}
 
 		$(function() {
+			loadMenu();
+			initMenu();
 			// init tree
 			tree.tree({
-				url : path + '/menu/initMenu',
+				url : ctx + '/menu/initMenu',
 				lines : true,
 				onClick : function(node) {
 					if (node.attributes.url) {
-						addTabs(node.text, node.iconCls, path
+						addTabs(node.text, node.iconCls, ctx
 								+ node.attributes.url);
 					}
 				}
 			});
 
 			// init home tabs			
-			initHomeTabs(path + '/home');
+			initHomeTabs(ctx + '/home');
 
 			// tabs onContextMenu
 			tabs.tabs({

@@ -1,159 +1,176 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.jiea.mustang.dao.EmpMapper" >
-  
-  <insert id="insertSelective" parameterType="com.jiea.mustang.entity.Emp" >
-    insert into t_emp
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="empName != null" >
-        emp_name,
-      </if>
-      <if test="gender != null" >
-        gender,
-      </if>
-      <if test="empNo != null" >
-        emp_no,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="mobile != null" >
-        mobile,
-      </if>
-      <if test="tel != null" >
-        tel,
-      </if>
-      <if test="deptId != null" >
-        dept_id,
-      </if>
-      <if test="isAvailable != null" >
-        is_available,
-      </if>
-      <if test="salt != null" >
-        salt,
-      </if>
-      <if test="memo != null" >
-        memo,
-      </if>
-      <if test="createTime != null" >
-        create_time,
-      </if>
-      <if test="creator != null" >
-        creator,
-      </if>
-      <if test="operTime != null" >
-        oper_time,
-      </if>
-      <if test="operator != null" >
-        operator,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="empName != null" >
-        #{empName,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        #{gender,jdbcType=CHAR},
-      </if>
-      <if test="empNo != null" >
-        #{empNo,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null" >
-        #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="tel != null" >
-        #{tel,jdbcType=VARCHAR},
-      </if>
-      <if test="deptId != null" >
-        #{deptId,jdbcType=INTEGER},
-      </if>
-      <if test="isAvailable != null" >
-        #{isAvailable,jdbcType=CHAR},
-      </if>
-      <if test="salt != null" >
-        #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="memo != null" >
-        #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null" >
-        #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="operTime != null" >
-        #{operTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="operator != null" >
-        #{operator,jdbcType=INTEGER},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.jiea.mustang.entity.Emp" >
-    update t_emp
-    <set >
-      <if test="empName != null" >
-        emp_name = #{empName,jdbcType=VARCHAR},
-      </if>
-      <if test="gender != null" >
-        gender = #{gender,jdbcType=CHAR},
-      </if>
-      <if test="empNo != null" >
-        emp_no = #{empNo,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="mobile != null" >
-        mobile = #{mobile,jdbcType=VARCHAR},
-      </if>
-      <if test="tel != null" >
-        tel = #{tel,jdbcType=VARCHAR},
-      </if>
-      <if test="deptId != null" >
-        dept_id = #{deptId,jdbcType=INTEGER},
-      </if>
-      <if test="isAvailable != null" >
-        is_available = #{isAvailable,jdbcType=CHAR},
-      </if>
-      <if test="salt != null" >
-        salt = #{salt,jdbcType=VARCHAR},
-      </if>
-      <if test="memo != null" >
-        memo = #{memo,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="creator != null" >
-        creator = #{creator,jdbcType=INTEGER},
-      </if>
-      <if test="operTime != null" >
-        oper_time = #{operTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="operator != null" >
-        operator = #{operator,jdbcType=INTEGER},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
+<mapper namespace="com.jiea.mustang.dao.EmpMapper">
+	
+	<!-- 根据员工编号查询员工信息 -->
+	<select id="getEmpByEmpNo" resultType="emp" parameterType="string">
+		SELECT 
+		  id,
+		  emp_name,
+		  emp_no,
+		  password,
+		  email,
+		  mobile,
+		  tel,
+		  dept_id,
+		  is_available 
+		FROM
+		  t_emp 
+		WHERE emp_no = #{username}
+	</select>
+
+	<insert id="insertSelective" parameterType="com.jiea.mustang.entity.Emp">
+		insert into t_emp
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="empName != null">
+				emp_name,
+			</if>
+			<if test="gender != null">
+				gender,
+			</if>
+			<if test="empNo != null">
+				emp_no,
+			</if>
+			<if test="email != null">
+				email,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="mobile != null">
+				mobile,
+			</if>
+			<if test="tel != null">
+				tel,
+			</if>
+			<if test="deptId != null">
+				dept_id,
+			</if>
+			<if test="isAvailable != null">
+				is_available,
+			</if>
+			<if test="salt != null">
+				salt,
+			</if>
+			<if test="memo != null">
+				memo,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="creator != null">
+				creator,
+			</if>
+			<if test="operTime != null">
+				oper_time,
+			</if>
+			<if test="operator != null">
+				operator,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="empName != null">
+				#{empName,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				#{gender,jdbcType=CHAR},
+			</if>
+			<if test="empNo != null">
+				#{empNo,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				#{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				#{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="deptId != null">
+				#{deptId,jdbcType=INTEGER},
+			</if>
+			<if test="isAvailable != null">
+				#{isAvailable,jdbcType=CHAR},
+			</if>
+			<if test="salt != null">
+				#{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				#{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				#{creator,jdbcType=INTEGER},
+			</if>
+			<if test="operTime != null">
+				#{operTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operator != null">
+				#{operator,jdbcType=INTEGER},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.jiea.mustang.entity.Emp">
+		update t_emp
+		<set>
+			<if test="empName != null">
+				emp_name = #{empName,jdbcType=VARCHAR},
+			</if>
+			<if test="gender != null">
+				gender = #{gender,jdbcType=CHAR},
+			</if>
+			<if test="empNo != null">
+				emp_no = #{empNo,jdbcType=VARCHAR},
+			</if>
+			<if test="email != null">
+				email = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="mobile != null">
+				mobile = #{mobile,jdbcType=VARCHAR},
+			</if>
+			<if test="tel != null">
+				tel = #{tel,jdbcType=VARCHAR},
+			</if>
+			<if test="deptId != null">
+				dept_id = #{deptId,jdbcType=INTEGER},
+			</if>
+			<if test="isAvailable != null">
+				is_available = #{isAvailable,jdbcType=CHAR},
+			</if>
+			<if test="salt != null">
+				salt = #{salt,jdbcType=VARCHAR},
+			</if>
+			<if test="memo != null">
+				memo = #{memo,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="creator != null">
+				creator = #{creator,jdbcType=INTEGER},
+			</if>
+			<if test="operTime != null">
+				oper_time = #{operTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="operator != null">
+				operator = #{operator,jdbcType=INTEGER},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
 </mapper>

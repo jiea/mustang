@@ -122,9 +122,18 @@
 			<artifactId>spring-test</artifactId>
 			<version>${springframework.version}</version>
 		</dependency>
-
-
-
+		
+		<!-- commons -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.6</version>
+		</dependency>
 
 
 

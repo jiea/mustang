@@ -8,14 +8,14 @@
 <body>
 	<div id="nav" class="easyui-accordion" fit="true" border="false"></div>
 	<script type="text/javascript">
-	var _url = "${app}";
+	var _url = "${ctx}";
 	var _menus;
 	
 	// 加载左侧菜单 
 	function loadMenu(){
 		$.ajax({
-			type : 'post',
-			url : '${app}/menu/load.shtml',
+			type : 'get',
+			url : '${ctx}/menu/load',
 			async : false,
 			dataType : 'json',
 			success : function(msg){

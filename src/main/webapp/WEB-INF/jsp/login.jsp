@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-	session.setAttribute("path", request.getContextPath());
+	session.setAttribute("ctx", request.getContextPath());
 %>
+<%@ include file="/WEB-INF/jsp/common/easyui.jsp"%>
 <html>
 <head>
 <meta charset="utf-8">
@@ -22,8 +22,7 @@ body, table, td, div {
 }
 
 .textfile {
-	background: url(${path}/static/img/bg_login_textfile.gif) no-repeat left
-		top;
+	background: url(${path}/static/img/bg_login_textfile.gif) no-repeat left top;
 	padding: 0px 2px;
 	height: 29px;
 	width: 143px;
@@ -40,58 +39,54 @@ body, table, td, div {
 </style>
 </head>
 <body>
-	<table width="95" border="0" align="center" cellpadding="0"
-		cellspacing="0">
+	<table width="95" border="0" align="center" cellpadding="0" cellspacing="0">
 		<tr>
-			<td><img src="${path}/static/img/file-center-log.png"
-				width="400" height="58" style="margin-top: 150px" /></td>
+			<td><div style="margin-top: 150px"></div></td>
 		</tr>
 		<tr>
 			<td>
 				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 					<tr>
-						<td
-							style="background:url('${path}/static/img/bg_form.jpg');background-size:410px 185px;background-repeat:no-repeat;">
-							<form id="userlogin" method="post"
-								action="${app }/admin/j_spring_security_check">
+						<td style="background:url('${ctx}/static/img/bg_form.jpg');background-size:410px 185px;background-repeat:no-repeat;">
+							<form id="userlogin" method="post" action="${app }/admin/j_spring_security_check">
 								<table width="370" border="0" align="center" cellpadding="0" cellspacing="0" style="padding-top: 6px;">
 									<tr height="35px">
 										<td align="right" width="90">用户名：</td>
 										<td width="165">
-											<label> 
-												<input id="username" name="username" type="text" class="easyui-textbox" iconCls='icon-man' value="${username}" style="width: 165px; height: 28px;" />
+											<label>
+												<input id="username" name="username" type="text" class="easyui-textbox" iconCls='icon-man' style="width: 165px; height: 28px;" />
 											</label>
 										</td>
-										<td>&nbsp;</td>
+										<td><label id="usernamelabel"></label></td>
 									</tr>
 									<tr height="35px">
 										<td align="right" width="90">密 码：</td>
 										<td>
-											<label> 
+											<label>
 												<input id="password" name="password" type="password" class="easyui-textbox" iconCls='icon-lock' style="width: 165px; height: 28px;" autocomplete="off" disableautocomplete />
 											</label>
 										</td>
-										<td><label id="passwordlaber"></label></td>
+										<td><label id="passwordlabel"></label></td>
 									</tr>
 									<tr height="35px">
 										<td align="right" width="90">验证码：</td>
 										<td>
 											<div style="width: 70px; height: 25px; float: left; margin-right: 12px;">
-												<input name="check_code" style="width: 70px; height: 25px;" id="chkcode" class="easyui-validatebox textbox" maxlength="4" />
+												<input style="width: 70px; height: 25px;" id="captcha" class="easyui-textbox" maxlength="4" />
 											</div>
 											<div style="width: 70px; height: 25px; float: left;">
-												<img id="loginimg" name="loginimg" style="width: 70px; height: 25px; cursor: pointer;" src="${path}/captcha/getCaptcha" title='看不清，单击更改' onclick="changeCaptcha();" border="0" />
+												<img id="loginimg" name="loginimg" style="width: 70px; height: 25px; cursor: pointer;" src="${ctx}/captcha/getCaptcha" title='看不清，单击更改' onclick="changeCaptcha();" border="0" />
 											</div>
 										</td>
-										<td>&nbsp;</td>
+										<td><label id="captchalabel"></label></td>
 									</tr>
 									<tr height="30px">
 										<td>&nbsp;</td>
 										<td>
-											<label>
-												<input onclick="login()" type="button" style="cursor:pointer;width:64px; height:25px;  border:0;background:url('${path}/static/img/btn_login.gif')" />
+											<label> 
+												<input onclick="login()" type="button" style="cursor:pointer;width:64px; height:25px;  border:0;background:url('${ctx}/static/img/btn_login.gif')" />
 												&nbsp; 
-												<input onclick="resets()" type="button" style="cursor:pointer;width:64px; height:25px;  border:0;background:url('${path}/static/img/btn_reset.gif')" />
+												<input onclick="reset()" type="button" style="cursor:pointer;width:64px; height:25px;  border:0;background:url('${ctx}/static/img/btn_reset.gif')" />
 											</label>
 										</td>
 										<td>&nbsp;</td>
@@ -101,9 +96,7 @@ body, table, td, div {
 						</td>
 					</tr>
 					<tr>
-						<td><br>
-						<br>
-						<br></td>
+						<td><br> <br> <br></td>
 					</tr>
 					<tr align="center">
 						<td>@Mustang</td>
@@ -113,40 +106,65 @@ body, table, td, div {
 		</tr>
 	</table>
 </body>
-<script type="text/javascript" charset="UTF-8" src="${path }/static/js/jquery/jquery-1.11.3.min.js"></script>
 <script type="text/javascript">
-	function validate() {
+	// 字段验证 
+	function validate(username, password, captcha) {
 		var flag = true;
-		var username = $("#username").val();
-		var password = $("#password").val();
 		if (username.length == 0) {
 			flag = false;
-			showerror("usernamelaber", "请输入用户名!");
+			showerror("usernamelabel", "请输入用户名");
 			return flag;
 		} else {
-			$("#usernamelaber").html('');
+			$("#usernamelabel").html('');
 		}
 		if (password.length == 0) {
 			flag = false;
-			showerror("passwordlaber", "请输入密码!");
+			showerror("passwordlabel", "请输入密码");
 			return flag;
 		} else {
-			$("#passwordlaber").html('');
+			$("#passwordlabel").html('');
+		}
+		if(captcha.length == 0){
+			flag = false;
+			showerror("captchalabel", "请输入验证码");
+			return flag;
+		} else {
+			$("#captchalabel").html('');
 		}
 
 		return flag;
 	}
-
+	// 登录
 	function login() {
-		if (validate()) {
-			$("#userlogin").submit();
+		var username = $("#username").val();
+		var password = $("#password").val();
+		var captcha = $("#captcha").val();
+		if (validate(username, password, captcha)) {
+			$.post('${ctx}/login/do', {username: username, password: password, captcha: captcha}, function(data){
+				if(!data.success){
+					changeCaptcha();
+					switch(data.code){
+					case '-1':
+						alert(data.msg);
+						break;
+					case '1':
+						showerror("captchalabel", data.msg);
+						break;
+					case '2':
+						showerror("usernamelabel", data.msg);
+						break;
+					}
+				}else{
+					window.location.href="${ctx}";
+				}
+			}, 'json');
 		}
 	}
-
-	function resets() {
+	// 重置
+	function reset() {
 		$("#username").textbox('setValue', '');
 		$("#password").textbox('setValue', '');
-		$("#chkcode").val("");
+		$("#captcha").textbox('setValue', '');
 	}
 	//回车登录
 	$(document).keydown(function(event) {
@@ -154,13 +172,13 @@ body, table, td, div {
 			login();
 		}
 	});
-
+	// 变更验证码
 	function changeCaptcha() {
-		$("#loginimg").attr("src", "${path}/captcha/getCaptcha?v=" + new Date().getTime());
+		$("#loginimg").attr("src", "${ctx}/captcha/getCaptcha?v=" + new Date().getTime());
 	}
-
+	// 错误提示
 	function showerror(id, info) {
-		$("#" + id).html("<font color='red'>× " + info + "</font>");
+		$("#" + id).html("<font color='red'>&nbsp;× " + info + "</font>");
 	}
 </script>
 
