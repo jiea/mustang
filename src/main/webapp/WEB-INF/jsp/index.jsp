@@ -55,19 +55,6 @@
 		}
 
 		$(function() {
-			loadMenu();
-			initMenu();
-			// init tree
-			tree.tree({
-				url : ctx + '/menu/initMenu',
-				lines : true,
-				onClick : function(node) {
-					if (node.attributes.url) {
-						addTabs(node.text, node.iconCls, ctx
-								+ node.attributes.url);
-					}
-				}
-			});
 
 			// init home tabs			
 			initHomeTabs(ctx + '/home');

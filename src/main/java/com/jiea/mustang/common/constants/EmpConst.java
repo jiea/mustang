@@ -10,4 +10,11 @@ public class EmpConst {
 	 * 账户使用状态：启用
 	 */
 	public static final String IS_AVAILABLE_USABLE = "1";
+	
+	
+	public static final String MALE = "1";
+	
+	public static final String FEMALE = "2";
+	
+	
 }

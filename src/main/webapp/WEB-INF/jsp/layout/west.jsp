@@ -7,10 +7,14 @@
 </head>
 <body>
 	<div id="nav" class="easyui-accordion" fit="true" border="false"></div>
+	
 	<script type="text/javascript">
 	var _url = "${ctx}";
 	var _menus;
-	
+	$(function(){
+		loadMenu();
+		initMenu();
+	});
 	// 加载左侧菜单 
 	function loadMenu(){
 		$.ajax({
@@ -26,34 +30,34 @@
 			}
 		});
 	}
-	
 	//初始化左侧菜单
 	function initMenu() {
-		$("#nav").accordion({animate:false});
-	    $.each(menus.menus, function(i, n) {
+		$("#nav").accordion({animate:true});
+	    $.each(_menus.menus, function(i, n) {
 			var menulist ='';
 			menulist +='<ul>';
 	        $.each(n.menus, function(j, o) {
-	        	url = _url + o.url;
-				menulist += '<li><div><a ref="'+o.menuid+'" href="#" rel="' + url + '" ><span class="icon '+o.icon+'" >&nbsp;</span><span class="nav">' + o.menuname + '</span></a></div></li> ';
+	        	url = _url + o.menuUrl;
+				menulist += '<li>' +
+								'<div>' +
+									'<a ref="'+o.id+'" href="javascript:;" rel="'+url+'" ><span class="'+o.menuIcon+'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nav">' + o.nameZh + '</span></a>' +
+						        '</div>' + 
+						     '</li>';
 	        })
 			menulist += '</ul>';
 			$('#nav').accordion('add', {
-	            title: n.menuname,
+	            title: n.nameZh,
 	            content: menulist,
-	            iconCls: 'icon ' + n.icon
+	            iconCls: n.menuIcon
 	        });
 	    });
-	    
-	    
 	
 		$('.easyui-accordion li a').click(function(){
-			var tabTitle = $(this).children('.nav').text();
-	
+			var title = $(this).children('.nav').text();
 			var url = $(this).attr("rel");
-			var menuid = $(this).attr("ref");
-			var icon = getIcon(menuid,icon);
-			createTab(url,tabTitle);
+			var id = $(this).attr("ref");
+			var icon = getIcon(id);
+			addTabs(title, icon, url);
 			$('.easyui-accordion li div').removeClass("selected");
 			$(this).parent().addClass("selected");
 		}).hover(function(){
@@ -66,6 +70,19 @@
 		var panels = $('#nav').accordion('panels');
 		var t = panels[0].panel('options').title;
 	    $('#nav').accordion('select', t);
+	}
+	
+	//获取左侧导航的图标
+	function getIcon(id){
+		var icon;
+		$.each(_menus.menus, function(i, n) {
+			 $.each(n.menus, function(j, o) {
+			 	if(o.id == id){
+					icon = o.menuIcon;
+				}
+			 })
+		})
+		return icon;
 	}
 	
     $('#nav').accordion({
