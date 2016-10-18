@@ -1,9 +1,8 @@
 package com.jiea.mustang.service;
 
-import java.util.Map;
-
-import com.jiea.mustang.common.utils.Pagination;
 import com.jiea.mustang.entity.Emp;
+
+import java.util.List;
 
 public interface EmpService {
 	
@@ -15,6 +14,6 @@ public interface EmpService {
 	/**
 	 * 获取员工分页列表
 	 */
-	Pagination getEmpList(Map<String, Object> conditions);
+	List<Emp> getEmpList(Emp emp, Integer page, Integer rows);
 
 }

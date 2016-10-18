@@ -63,7 +63,8 @@
 		var $empDialog = $("#empDialog");
 		$(function(){
 			$empdg = $("#empdg").datagrid({
-				url : '${path}/emp/list',
+				url : '${ctx}/emp/list',
+				method : 'get',
 				pagination : true,
 				fit : true,
 				toolbar : "#toolbar",
