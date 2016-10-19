@@ -74,7 +74,7 @@ function hasRepeat(url, val, id){
 			if (data.success) {
 				flag = data.repeat;
 			}else{
-				alertSysErrorMsg();
+				alertSysErrMsg();
 			}
 		}
 	});

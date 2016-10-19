@@ -77,16 +77,16 @@
 					field : 'id',
 					checkbox : true
 				},{
-					field : 'emp_name',
+					field : 'empName',
 					title : '姓名',
 					width : '10%',
 					align : 'center'
 				},{
-					field : 'sex',
+					field : 'gender',
 					title : '性别',
 					width : '5%',
 					align : 'center',
-					formatter: function(value, row, index){
+					formatter: function(value){
 						if (value == "1"){
 							return "男";
 						} else if (value == "2"){
@@ -96,7 +96,7 @@
 						}
 					}
 				},{
-					field : 'emp_no',
+					field : 'empNo',
 					title : '员工编号',
 					width : '10%',
 					align : 'center'
@@ -115,11 +115,11 @@
 					width : '10%',
 					align : 'center'
 				},{
-					field : 'is_available',
+					field : 'isAvailable',
 					title : '是否有效',
 					width : '5%',
 					align : 'center',
-					formatter: function(value, row, index){
+					formatter: function(value){
 						if (value == "1"){
 							return "<span style='color:#698cba'>有效</span>";
 						} else if (value == "0"){
@@ -130,7 +130,7 @@
 					}
 				}]],
 				onLoadError : function(){
-					alertSysErrorMsg();
+					alertSysErrMsg();
 				}
 			});
 			
@@ -145,7 +145,7 @@
 		
 		// add emp
 		function toAddEmp(){
-			openEmpDialog('&nbsp;添加员工', 'icon-031', '${ctx}/emp/openEmpDialog');
+			openEmpDialog('&nbsp;添加员工', 'icon-001', '${ctx}/emp/openEmpDialog');
 		}
 		
 		// open empDialog
