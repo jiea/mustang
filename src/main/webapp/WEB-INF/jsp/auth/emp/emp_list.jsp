@@ -24,9 +24,9 @@
 						<input type="text" class="easyui-textbox" id="mobile" name="mobile">
 					</td>
 					<td rowspan="2" width="15%">
-						<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-016',width:70,height:30" onclick="empSearch();">查&nbsp;询</a>
+						<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-016',width:70,height:30" onclick="empSearch();">查&nbsp;询</a>
 						&nbsp;&nbsp;&nbsp;
-						<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-085',width:70,height:30" onclick="clearForm($empdg)">清&nbsp;空</a>
+						<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-085',width:70,height:30" onclick="clearForm(empdg)">清&nbsp;空</a>
 					</td>
 				</tr>
 				<tr>
@@ -42,27 +42,27 @@
 		<table id="empdg" style="width:100%;height:100%;"></table>
 	</div>
 	<div id="toolbar">
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-001',plain:true" onclick="toAddEmp();">添加</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-001',plain:true" onclick="toAddEmp();">添加</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-002',plain:true" onclick="toEditEmp();">修改</a> 
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-002',plain:true" onclick="toModifyEmp();">修改</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-036',plain:true" onclick="authorization();">用户授权</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-036',plain:true" onclick="authorization();">用户授权</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-035',plain:true" onclick="resetPassword();">密码重置</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-035',plain:true" onclick="resetPassword();">密码重置</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-033',plain:true" onclick="disableFun();">停用</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-033',plain:true" onclick="disableFun();">停用</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-034',plain:true" onclick="enabledFun();">启用</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-034',plain:true" onclick="enabledFun();">启用</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-073',plain:true" onclick="openWorkGroupDialog();">设置工作组</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-073',plain:true" onclick="openWorkGroupDialog();">设置工作组</a>
 	</div>
 	<div id="empDialog"></div>
 	<script type="text/javascript">
-		var $empdg;
-		var $empSearch = $("#empSearch");
-		var $empDialog = $("#empDialog");
+		var empdg;
+		var empSearch = $("#empSearch");
+		var empDialog = $("#empDialog");
 		$(function(){
-			$empdg = $("#empdg").datagrid({
+			empdg = $("#empdg").datagrid({
 				url : '${ctx}/emp/list',
 				method : 'get',
 				pagination : true,
@@ -138,16 +138,25 @@
 		
 		// search
 		function empSearch(){
-			$empdg.datagrid('load', serializeForm($empSearch));
-			$empdg.datagrid('clearSelections');
-			$empdg.datagrid('clearChecked');
+			empdg.datagrid('load', serializeForm(empSearch));
+			empdg.datagrid('clearSelections');
+			empdg.datagrid('clearChecked');
 		}
 		
-		// add emp
+		// 添加
 		function toAddEmp(){
 			openEmpDialog('&nbsp;添加员工', 'icon-001', '${ctx}/emp/openEmpDialog');
 		}
-		
+
+		// 修改
+		function toModifyEmp(){
+			var rows = empdg.datagrid('getSelections');
+			if(rows.length > 0){
+
+			}
+			openEmpDialog('&nbsp;修改员工', 'icon-002', '${ctx}/emp/openEmpDialog');
+		}
+
 		// open empDialog
 		function openEmpDialog(titleType, imgType, url){
 			empDialog = $("#empDialog").dialog({
@@ -159,7 +168,7 @@
 				cache : false,
 				href : url,
 				closable : true,
-				border : false
+				border : true
 			});
 		}
 		
