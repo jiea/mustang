@@ -13,6 +13,8 @@
 			}
 		});
 	}
+
+	//
 </script>
 <div border="false" style="height: 100%; width: 100%; overflow: hidden;">
 	<form id="empAddForm" class="easyui-form" method="post">
@@ -74,9 +76,9 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<a href="javascript:;" class="easyui-linkbutton" id="submitButton"  iconCls="icon-011" onclick="submitForm();">提交</a>
+					<a href="javascript:;" class="easyui-linkbutton" id="submitBtn"  iconCls="icon-011" onclick="submitForm();">提交</a>
 					&nbsp;&nbsp;&nbsp;
-					<a href="javascript:;" class="easyui-linkbutton" id="submitButton"  iconCls="icon-013" onclick="submitForm();">取消</a>
+					<a href="javascript:;" class="easyui-linkbutton" id="cancelBtn"  iconCls="icon-013" onclick="cancel();">取消</a>
 				</td>
 			</tr>
 		</table>
