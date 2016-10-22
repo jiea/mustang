@@ -152,12 +152,17 @@
 		function toModifyEmp(){
 			var rows = empdg.datagrid('getSelections');
 			if(rows.length > 0){
-
+				if(rows.length > 1){
+					showMsgSlide('请选择一条记录操作');
+					return;
+				}
+				openEmpDialog('&nbsp;修改员工', 'icon-002', '${ctx}/emp/openEmpDialog');
+			}else{
+				showMsgSlide('请选择要修改的记录');
 			}
-			openEmpDialog('&nbsp;修改员工', 'icon-002', '${ctx}/emp/openEmpDialog');
 		}
 
-		// open empDialog
+		// 打开添加修改弹层
 		function openEmpDialog(titleType, imgType, url){
 			empDialog = $("#empDialog").dialog({
 				title : titleType,
