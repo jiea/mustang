@@ -2,14 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
 	function submitForm(){
-		var $empAddForm = $("#empAddForm");
-		$empAddForm.form('submit', {
+		var empAddForm = $("#empAddForm");
+		empAddForm.form('submit', {
 			url : '${ctx}/emp/doAddEmp',
 			onSubmit : function(){
-				return $empAddForm.form("validate");
+				if(empAddForm.form("validate")){
+					MaskUtil.mask();
+					return true;
+				}else{
+					return false;
+				}
 			},
 			success : function(data){
-
+				MaskUtil.unmask();
 			}
 		});
 	}

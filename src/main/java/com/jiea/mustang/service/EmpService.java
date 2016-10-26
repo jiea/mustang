@@ -16,4 +16,11 @@ public interface EmpService {
 	 */
 	List<Emp> getEmpList(Emp emp, Integer page, Integer rows);
 
+	/**
+	 * 新增员工
+	 * @param emp
+	 * @return
+     */
+	int insert(Emp emp);
+
 }

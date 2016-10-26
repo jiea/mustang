@@ -36,8 +36,8 @@ var MaskUtil = (function(){
 			init();
 			$mask.show();
 			$maskMsg.html(msg||defMsg).show();
-		}
-		,unmask:function(){
+		},
+		unmask:function(){
 			$mask.hide();
 			$maskMsg.hide();
 		}

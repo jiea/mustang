@@ -27,4 +27,9 @@ public class EmpServiceImpl implements EmpService {
 		return list;
 	}
 
+	@Override
+	public int insert(Emp emp) {
+		return empMapper.insertSelective(emp);
+	}
+
 }
