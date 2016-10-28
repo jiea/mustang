@@ -1,4 +1,4 @@
-package com.jiea.mustang.vo;
+package com.jiea.mustang.dto;
 
 public class Rtn<T> {
 

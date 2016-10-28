@@ -18,7 +18,7 @@ import com.jiea.mustang.entity.Emp;
 import com.jiea.mustang.entity.LoginLog;
 import com.jiea.mustang.service.EmpService;
 import com.jiea.mustang.service.LoginLogService;
-import com.jiea.mustang.vo.Rtn;
+import com.jiea.mustang.dto.Rtn;
 
 @Controller
 @RequestMapping("login")

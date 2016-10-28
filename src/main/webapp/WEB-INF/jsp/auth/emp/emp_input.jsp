@@ -4,7 +4,7 @@
 	function submitForm(){
 		var empAddForm = $("#empAddForm");
 		empAddForm.form('submit', {
-			url : '${ctx}/emp/doAddEmp',
+			url : '${ctx}/emp/addEmp',
 			onSubmit : function(){
 				if(empAddForm.form("validate")){
 					MaskUtil.mask();
@@ -14,20 +14,26 @@
 				}
 			},
 			success : function(data){
+				var obj = eval("(" + data + ")");
 				MaskUtil.unmask();
+				if(obj.success){
+					closeDialog(empDialog);
+                    empdg.datagrid('load');
+                    showSuccessMsgSlide();
+                }else{
+                    alertMsg(obj.msg, 'error');
+                }
 			}
 		});
 	}
-
-	//
 </script>
-<div border="false" style="height: 100%; width: 100%; overflow: hidden;">
+<div  style="height: 100%; width: 100%; overflow: hidden;">
 	<form id="empAddForm" class="easyui-form" method="post">
-		<table class="tableForm" border="0" width="100%" height="100%">
+		<table class="tableForm" border="0" width="100%">
 			<tr>
 				<td width="15%" class="tdR"><span style="color: red">*</span>姓名：</td>
 				<td width="35%">
-					<input type="text" id="name" name="name" value="${empName }" class="easyui-textbox" data-options="required:true,validType:'length[0,10]'" style="height: 30px;"/>
+					<input type="text" id="name" name="empName" value="${empName}" class="easyui-textbox" data-options="required:true,validType:'length[0,10]'" style="height: 30px;"/>
 				</td>
 				<td width="15%" class="tdR"><span style="color: red">*</span>性别：</td>
 				<td width="35%">
@@ -39,11 +45,11 @@
 			<tr>
 				<td class="tdR"><span style="color: red">*</span>邮箱：</td>
 				<td>
-					<input type="text" id="email" name="email" value="${email }" class="easyui-textbox" data-options="required:true,validType:['email','length[0,30]']" style="height: 30px;"/>
+					<input type="text" id="email" name="email" value="${email}" class="easyui-textbox" data-options="required:true,validType:['email','length[0,30]']" style="height: 30px;"/>
 				</td>
 				<td class="tdR"><span style="color: red">*</span>员工编号：</td>
 				<td>
-					<input type="text" id="employeeNo" name="empNo" value="${empNo }" class='easyui-numberbox' data-options="required:true,validType:'length[0,20]'" style="height: 30px;"/>
+					<input type="text" id="employeeNo" name="empNo" value="${empNo}" class='easyui-numberbox' data-options="required:true,validType:'length[0,20]'" style="height: 30px;"/>
 				</td>
 			</tr>
 			<tr>
@@ -81,9 +87,9 @@
 			</tr>
 			<tr>
 				<td colspan="4" align="center">
-					<a href="javascript:;" class="easyui-linkbutton" id="submitBtn"  iconCls="icon-011" onclick="submitForm();">提交</a>
+					<a href="javascript:;" class="easyui-linkbutton" id="submitBtn" iconCls="icon-011" onclick="submitForm();">提交</a>
 					&nbsp;&nbsp;&nbsp;
-					<a href="javascript:;" class="easyui-linkbutton" id="cancelBtn"  iconCls="icon-013" onclick="cancel();">取消</a>
+					<a href="javascript:;" class="easyui-linkbutton" id="cancelBtn" iconCls="icon-013" onclick="closeDialog(empDialog);">取消</a>
 				</td>
 			</tr>
 		</table>

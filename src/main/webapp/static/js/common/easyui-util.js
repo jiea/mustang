@@ -58,7 +58,7 @@ function alertMsg(msg, msgType) {
 
 // 系统错误提示信息
 function alertSysErrMsg() {
-	$.messager.alert('提示信息', '系统错误, 请联系管理员', 'error');
+	$.messager.alert('提示信息', '系统异常, 请联系管理员', 'error');
 }
 
 // 数据是否重复
@@ -80,4 +80,9 @@ function hasRepeat(url, val, id){
 	});
 	
 	return flag;
+}
+
+// 关闭Dialog
+function closeDialog(dialog){
+	dialog.dialog('close');
 }

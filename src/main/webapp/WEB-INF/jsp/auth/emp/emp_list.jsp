@@ -9,7 +9,7 @@
 <body class="easyui-layout">
 	<div data-options="region:'north', border:false" class="search-div">
 		<form id="empSearch">
-			<table class="searchForm datagrid-toolbar">
+			<table class="searchForm datagrid-toolbar" width="100%">
 				<tr>
 					<td class="tdR" width="8%">员工姓名：</td>
 					<td class="tdL" width="20%">

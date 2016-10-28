@@ -77,8 +77,8 @@
 			<if test="creator != null">
 				creator,
 			</if>
-			<if test="operTime != null">
-				oper_time,
+			<if test="operateTime != null">
+				operate_time,
 			</if>
 			<if test="operator != null">
 				operator,
@@ -127,8 +127,8 @@
 			<if test="creator != null">
 				#{creator,jdbcType=INTEGER},
 			</if>
-			<if test="operTime != null">
-				#{operTime,jdbcType=TIMESTAMP},
+			<if test="operateTime != null">
+				#{operateTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="operator != null">
 				#{operator,jdbcType=INTEGER},
@@ -177,8 +177,8 @@
 			<if test="creator != null">
 				creator = #{creator,jdbcType=INTEGER},
 			</if>
-			<if test="operTime != null">
-				oper_time = #{operTime,jdbcType=TIMESTAMP},
+			<if test="operateTime != null">
+				operate_time = #{operateTime,jdbcType=TIMESTAMP},
 			</if>
 			<if test="operator != null">
 				operator = #{operator,jdbcType=INTEGER},

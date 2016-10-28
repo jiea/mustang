@@ -8,6 +8,6 @@ public class SystemConst {
 	// session中的员工信息key值
 	public static final String EMP = "emp";
 	
-	// 程序异常处理
-	public static final String ERROR = "系统异常，请联系管理员";
+	// 程序异常提示信息
+	public static final String ERROR = "系统异常，请联系管理员！";
 }
