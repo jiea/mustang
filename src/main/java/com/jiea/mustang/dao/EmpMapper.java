@@ -22,4 +22,14 @@ public interface EmpMapper {
 	 * @return
      */
 	List<Emp> getEmpList(Emp emp);
+
+    /**
+     * 根据主键获取员工信息
+     */
+    Emp getEmpById(Integer id);
+
+    /**
+     * 根据主键更新员工信息
+     */
+    int updateEmpById(Emp emp);
 }

@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jiea.mustang.dao.EmpMapper">
-	
+
+    <!-- 根据主键查询员工信息 -->
+    <select id="getEmpById" parameterType="int" resultType="emp">
+        SELECT
+          id,
+          emp_name,
+          gender,
+          emp_no,
+          email,
+          mobile,
+          tel,
+          is_available,
+          memo
+        FROM
+          t_emp
+        WHERE id = #{id}
+    </select>
+
+    <!-- 员工列表 -->
 	<select id="getEmpList" parameterType="emp" resultType="emp">
 		SELECT
+		  id,
 		  emp_name,
 		  gender,
 		  emp_no,
@@ -13,6 +32,7 @@
 		  is_available
 		FROM
 		  t_emp
+		ORDER BY id DESC
 	</select>
 	
 	<!-- 根据员工编号查询员工信息 -->
@@ -32,7 +52,8 @@
 		WHERE emp_no = #{username}
 	</select>
 
-	<insert id="insertSelective" parameterType="com.jiea.mustang.entity.Emp">
+    <!-- 新增 -->
+	<insert id="insertSelective" parameterType="emp">
 		insert into t_emp
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -135,7 +156,9 @@
 			</if>
 		</trim>
 	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.jiea.mustang.entity.Emp">
+
+    <!--根据主键更新员工信息-->
+	<update id="updateEmpById" parameterType="emp">
 		update t_emp
 		<set>
 			<if test="empName != null">

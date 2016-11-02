@@ -56,18 +56,18 @@
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-073',plain:true" onclick="openWorkGroupDialog();">设置工作组</a>
 	</div>
-	<div id="empDialog"></div>
-	<script type="text/javascript">
-		var empdg;
-		var empSearch = $("#empSearch");
-		var empDialog = $("#empDialog");
+    <div id="empAddModifyDialog"></div>
+    <script type="text/javascript">
+        var empdg;
+		var empSearch;
+		var empAddModifyDialog;
 		$(function(){
-			empdg = $("#empdg").datagrid({
+			empdg = $('#empdg').datagrid({
 				url : '${ctx}/emp/list',
 				method : 'get',
 				pagination : true,
 				fit : true,
-				toolbar : "#toolbar",
+				toolbar : '#toolbar',
 				singleSelect : true,
 				rownumbers : true,
 				striped : true,
@@ -121,7 +121,7 @@
 					align : 'center',
 					formatter: function(value){
 						if (value == "1"){
-							return "<span style='color:#698cba'>有效</span>";
+							return "<span style='color:#4370ba'>有效</span>";
 						} else if (value == "0"){
 							return "<span style='color:#d84f4b'>无效</span>";
 						} else{
@@ -145,7 +145,7 @@
 		
 		// 添加
 		function toAddEmp(){
-			openEmpDialog('&nbsp;添加员工', 'icon-001', '${ctx}/emp/openEmpDialog');
+			openEmpDialog('&nbsp;添加员工', 'icon-001', '${ctx}/emp/toAddEmp');
 		}
 
 		// 修改
@@ -156,27 +156,28 @@
 					showMsgSlide('请选择一条记录操作');
 					return;
 				}
-				openEmpDialog('&nbsp;修改员工', 'icon-002', '${ctx}/emp/openEmpDialog');
+				openEmpDialog('&nbsp;修改员工', 'icon-002', '${ctx}/emp/toModifyEmp/'+rows[0].id);
 			}else{
 				showMsgSlide('请选择要修改的记录');
 			}
 		}
 
-		// 打开添加修改弹层
+		// 打开修改弹层
 		function openEmpDialog(titleType, imgType, url){
-			empDialog = $("#empDialog").dialog({
+            empAddModifyDialog = $('#empAddModifyDialog').dialog({
 				title : titleType,
 				iconCls : imgType,
 				width : '50%',
 				height : '325px',
-				maximizable : true,
+				maximizable : false,
+                draggable : false,
 				cache : false,
 				href : url,
 				closable : true,
-				border : true
+				border : true,
+                modal : true
 			});
 		}
-		
 	</script>
 </body>
 </html>

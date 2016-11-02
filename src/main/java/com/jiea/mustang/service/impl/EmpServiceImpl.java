@@ -34,4 +34,14 @@ public class EmpServiceImpl implements EmpService {
 		return empMapper.insertSelective(emp);
 	}
 
+    @Override
+    public Emp getEmpById(Integer id) {
+        return empMapper.getEmpById(id);
+    }
+
+    @Override
+    public int modifyEmp(Emp emp) {
+        return empMapper.updateEmpById(emp);
+    }
+
 }

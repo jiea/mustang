@@ -9,11 +9,11 @@ public class Paging<T> {
 
     private long total;
 
-    private List<T> data;
+    private List<T> rows;
 
-    public Paging(long total, List<T> data) {
+    public Paging(long total, List<T> rows) {
         this.total = total;
-        this.data = data;
+        this.rows = rows;
     }
 
     public long getTotal() {
@@ -24,11 +24,11 @@ public class Paging<T> {
         this.total = total;
     }
 
-    public List<T> getData() {
-        return data;
+    public List<T> getRows() {
+        return rows;
     }
 
-    public void setData(List<T> data) {
-        this.data = data;
+    public void setRows(List<T> rows) {
+        this.rows = rows;
     }
 }

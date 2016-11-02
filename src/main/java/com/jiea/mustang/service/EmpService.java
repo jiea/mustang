@@ -20,4 +20,13 @@ public interface EmpService {
      */
 	int insert(Emp emp);
 
+    /**
+     * 根据主键获取员工信息
+     */
+    Emp getEmpById(Integer id);
+
+    /**
+     * 修改员工信息
+     */
+    int modifyEmp(Emp emp);
 }
