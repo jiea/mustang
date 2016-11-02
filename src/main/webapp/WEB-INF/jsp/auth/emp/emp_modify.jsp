@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
     $(function(){
-        $('#empModifyDiv').fadeIn('fast');
+        $('#empModifyDiv').fadeIn('slow');
     });
 	function submitForm(){
 		var empModifyForm = $('#empModifyForm');

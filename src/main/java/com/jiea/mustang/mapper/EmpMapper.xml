@@ -19,6 +19,25 @@
         WHERE id = #{id}
     </select>
 
+    <!--员工列表查询条件-->
+    <sql id="dynamicWhere">
+        <if test="empName != null">
+            AND emp_name LIKE '${empName}%'
+        </if>
+        <if test="empNo != null">
+            AND emp_no = #{empNo}
+        </if>
+        <if test="mobile != null">
+            AND mobile = #{mobile}
+        </if>
+        <if test="tel != null">
+            AND tel = #{tel}
+        </if>
+        <if test="email != null">
+            AND email = #{email}
+        </if>
+    </sql>
+    
     <!-- 员工列表 -->
 	<select id="getEmpList" parameterType="emp" resultType="emp">
 		SELECT
@@ -32,6 +51,8 @@
 		  is_available
 		FROM
 		  t_emp
+		WHERE 1=1
+		<include refid="dynamicWhere"/>
 		ORDER BY id DESC
 	</select>
 	

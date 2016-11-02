@@ -34,6 +34,7 @@ public class EmpController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public Paging<Emp> list(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows, Emp emp) {
+        System.out.println(emp.getEmpName());
         Paging<Emp> paging = null;
         try {
             paging = empService.getEmpList(emp, page, rows);

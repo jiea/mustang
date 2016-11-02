@@ -59,7 +59,6 @@
     <div id="empAddModifyDialog"></div>
     <script type="text/javascript">
         var empdg;
-		var empSearch;
 		var empAddModifyDialog;
 		$(function(){
 			empdg = $('#empdg').datagrid({
@@ -138,7 +137,7 @@
 		
 		// search
 		function empSearch(){
-			empdg.datagrid('load', serializeForm(empSearch));
+			empdg.datagrid('load', serializeForm($('#empSearch')));
 			empdg.datagrid('clearSelections');
 			empdg.datagrid('clearChecked');
 		}
