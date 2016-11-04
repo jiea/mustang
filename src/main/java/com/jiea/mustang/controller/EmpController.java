@@ -34,7 +34,6 @@ public class EmpController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "list", method = RequestMethod.GET)
     public Paging<Emp> list(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows, Emp emp) {
-        System.out.println(emp.getEmpName());
         Paging<Emp> paging = null;
         try {
             paging = empService.getEmpList(emp, page, rows);
@@ -80,7 +79,7 @@ public class EmpController extends BaseController {
     public Rtn addEmp(Emp emp) {
         try {
             if(emp != null){
-                emp.setPassword(SHAUtil.SHAEncode("123456"));
+                emp.setPassword(SHAUtil.SHAEncode(SystemConst.DEFAULT_PWD));
                 emp.setCreateTime(new Date());
                 emp.setCreator(1);
                 int count = empService.insert(emp);
@@ -121,5 +120,68 @@ public class EmpController extends BaseController {
             log.error(e.getMessage(), e);
             return new Rtn(false, SystemConst.ERROR);
         }
+    }
+
+    /**
+     * 密码重置
+     */
+    @ResponseBody
+    @RequestMapping(value = "resetPassword", method = RequestMethod.POST)
+    public Rtn resetPassword(@RequestParam("id") Integer id){
+        Emp emp = new Emp();
+        try {
+            emp.setId(id);
+            emp.setPassword(SHAUtil.SHAEncode(SystemConst.DEFAULT_PWD));
+            emp.setOperateTime(new Date());
+            emp.setOperator(1);
+            empService.resetPassword(emp);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new Rtn(false, SystemConst.ERROR);
+        }
+
+        return new Rtn(true);
+    }
+
+    /**
+     * 停用
+     */
+    @ResponseBody
+    @RequestMapping(value = "disable", method = RequestMethod.POST)
+    public Rtn disable(@RequestParam("id") Integer id){
+        Emp emp = new Emp();
+        try {
+            emp.setId(id);
+            emp.setIsAvailable("0");
+            emp.setOperateTime(new Date());
+            emp.setOperator(1);
+            empService.disable(emp);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            new Rtn(false, SystemConst.ERROR);
+        }
+
+        return new Rtn(true);
+    }
+
+    /**
+     * 启用
+     */
+    @ResponseBody
+    @RequestMapping(value = "enabled", method = RequestMethod.POST)
+    public Rtn enabled(@RequestParam("id") Integer id){
+        Emp emp = new Emp();
+        try {
+            emp.setId(id);
+            emp.setIsAvailable("1");
+            emp.setOperateTime(new Date());
+            emp.setOperator(1);
+            empService.enabled(emp);
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            new Rtn(false, SystemConst.ERROR);
+        }
+
+        return new Rtn(true);
     }
 }

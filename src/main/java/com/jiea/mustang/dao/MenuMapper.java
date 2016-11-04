@@ -11,8 +11,18 @@ public interface MenuMapper {
 	 */
 	List<Menu> findMenuByEmpId(Integer empId);
 	
-	/*
+	/**
 	 * 通过父id查询菜单
 	 */
 	List<Menu> findMenuByParentId(List<Integer> menuPid);
+
+    /**
+     * 查询所有菜单
+     */
+    List<Menu> selectAllMenu();
+
+    /**
+     * 根据主键查询菜单
+     */
+    Menu getMenuById(Integer id);
 }

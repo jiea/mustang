@@ -44,4 +44,19 @@ public class EmpServiceImpl implements EmpService {
         return empMapper.updateEmpById(emp);
     }
 
+    @Override
+    public void resetPassword(Emp emp) {
+        empMapper.updateEmpById(emp);
+    }
+
+    @Override
+    public void disable(Emp emp) {
+        empMapper.updateEmpById(emp);
+    }
+
+    @Override
+    public void enabled(Emp emp) {
+        empMapper.updateEmpById(emp);
+    }
+
 }

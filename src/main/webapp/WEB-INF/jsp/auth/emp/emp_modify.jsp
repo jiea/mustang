@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script type="text/javascript">
-    $(function(){
-        $('#empModifyDiv').fadeIn('slow');
-    });
+    $.parser.onComplete = function() {
+        dialogEffect("empModifyDiv");
+    }
 	function submitForm(){
 		var empModifyForm = $('#empModifyForm');
         empModifyForm.form('submit', {
@@ -43,7 +43,7 @@
 				<td width="35%">
 					<input type="radio" id="sex_1" name="gender" value="1" <c:if test="${emp.gender == null || emp.gender == '1'}">checked="checked"</c:if>/><label for="sex_1">男</label>
 					&nbsp;
-					<input type="radio" id="sex_2" name="gender" value="0" <c:if test="${emp.gender == '2'}">checked="checked"</c:if>/><label for="sex_2">女</label>
+					<input type="radio" id="sex_2" name="gender" value="2" <c:if test="${emp.gender == '2'}">checked="checked"</c:if>/><label for="sex_2">女</label>
 				</td>
 			</tr>
 			<tr>

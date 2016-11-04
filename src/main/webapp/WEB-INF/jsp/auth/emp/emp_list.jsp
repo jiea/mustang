@@ -50,9 +50,9 @@
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-035',plain:true" onclick="resetPassword();">密码重置</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-033',plain:true" onclick="disableFun();">停用</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-033',plain:true" onclick="disable();">停用</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-034',plain:true" onclick="enabledFun();">启用</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-034',plain:true" onclick="enabled();">启用</a>
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-073',plain:true" onclick="openWorkGroupDialog();">设置工作组</a>
 	</div>
@@ -177,6 +177,80 @@
                 modal : true
 			});
 		}
+
+        // 密码重置
+        function resetPassword() {
+            var rows = empdg.datagrid('getSelections');
+            if (rows.length > 0) {
+                if (rows.length > 1) {
+                    showMsgSlide('请选择一条记录进行密码重置');
+                    return;
+                }
+                $.messager.confirm('确认', '是否执行密码重置？', function (r) {
+                    if (r) {
+                        $.post('${ctx}/emp/resetPassword', {id : rows[0].id}, function(data){
+                            if(data.success){
+                                showSuccessMsgSlide();
+                            }else{
+                                alertSysErrMsg();
+                            }
+                        }, 'json')
+                    }
+                });
+            } else {
+                showMsgSlide('请选择要密码重置的记录');
+            }
+        }
+
+        // 停用
+        function disable(){
+            var rows = empdg.datagrid('getSelections');
+            if (rows.length > 0) {
+                if (rows.length > 1) {
+                    showMsgSlide('请选择一条记录进行停用');
+                    return;
+                }
+                $.messager.confirm('确认', '是否执行停用操作？', function (r) {
+                    if (r) {
+                        $.post('${ctx}/emp/disable', {id : rows[0].id}, function(data){
+                            if(data.success){
+                                empdg.datagrid('load');
+                                showSuccessMsgSlide();
+                            }else{
+                                alertSysErrMsg();
+                            }
+                        }, 'json')
+                    }
+                });
+            } else {
+                showMsgSlide('请选择要停用的记录');
+            }
+        }
+
+        // 启用
+        function enabled(){
+            var rows = empdg.datagrid('getSelections');
+            if (rows.length > 0) {
+                if (rows.length > 1) {
+                    showMsgSlide('请选择一条记录进行启用');
+                    return;
+                }
+                $.messager.confirm('确认', '是否执行启用操作？', function (r) {
+                    if (r) {
+                        $.post('${ctx}/emp/enabled', {id : rows[0].id}, function(data){
+                            if(data.success){
+                                empdg.datagrid('load');
+                                showSuccessMsgSlide();
+                            }else{
+                                alertSysErrMsg();
+                            }
+                        }, 'json')
+                    }
+                });
+            } else {
+                showMsgSlide('请选择要启用的记录');
+            }
+        }
 	</script>
 </body>
 </html>

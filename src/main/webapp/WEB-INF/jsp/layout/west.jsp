@@ -36,12 +36,12 @@
 	    $.each(_menus.menus, function(i, n) {
 			var menulist ='';
 			menulist +='<ul>';
-	        $.each(n.menus, function(j, o) {
-	        	url = _url + o.menuUrl;
+	        $.each(n.children, function(j, o) {
+	        	var url = _url + o.menuUrl;
 				menulist += '<li>' +
 								'<div>' +
 									'<a ref="'+o.id+'" href="javascript:;" rel="'+url+'" ><span class="'+o.menuIcon+'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nav">' + o.nameZh + '</span></a>' +
-						        '</div>' + 
+						        '</div>' +
 						     '</li>';
 	        })
 			menulist += '</ul>';
@@ -76,7 +76,7 @@
 	function getIcon(id){
 		var icon;
 		$.each(_menus.menus, function(i, n) {
-			 $.each(n.menus, function(j, o) {
+			 $.each(n.children, function(j, o) {
 			 	if(o.id == id){
 					icon = o.menuIcon;
 				}

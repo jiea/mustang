@@ -18,7 +18,7 @@ public class Menu extends Entity {
 
 	private String memo;
 	
-	private List<Menu> menus;
+	private List<Menu> children;
 
 	public String getNameEn() {
 		return nameEn;
@@ -76,12 +76,11 @@ public class Menu extends Entity {
 		this.memo = memo;
 	}
 
-	public List<Menu> getMenus() {
-		return menus;
-	}
+    public List<Menu> getChildren() {
+        return children;
+    }
 
-	public void setMenus(List<Menu> menus) {
-		this.menus = menus;
-	}
-	
+    public void setChildren(List<Menu> children) {
+        this.children = children;
+    }
 }

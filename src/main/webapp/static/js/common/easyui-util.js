@@ -1,7 +1,7 @@
 // 将form表单元素的值序列化成对象
 function serializeForm(form) {
 	var o = {};
-	$.each(form.serializeArray(), function(index) {
+	$.each(form.serializeArray(), function() {
 		if (o[this['name']]) {
 			o[this['name']] = o[this['name']] + "," + this['value'];
 		} else {
@@ -85,4 +85,11 @@ function hasRepeat(url, val, id){
 // 关闭Dialog
 function closeDialog(dialog){
 	dialog.dialog('close');
+}
+
+// 加载dialog内容，淡入效果
+function dialogEffect(id){
+    $('#'+id+'').fadeIn('slow', function() {
+        $(this).show();
+    });
 }

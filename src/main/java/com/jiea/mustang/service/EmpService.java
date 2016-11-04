@@ -29,4 +29,19 @@ public interface EmpService {
      * 修改员工信息
      */
     int modifyEmp(Emp emp);
+
+    /**
+     * 重置密码
+     */
+    void resetPassword(Emp emp);
+
+    /**
+     * 停用
+     */
+    void disable(Emp emp);
+
+    /**
+     * 启用
+     */
+    void enabled(Emp emp);
 }

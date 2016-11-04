@@ -21,19 +21,19 @@
 
     <!--员工列表查询条件-->
     <sql id="dynamicWhere">
-        <if test="empName != null">
+        <if test="empName != null and empName != ''">
             AND emp_name LIKE '${empName}%'
         </if>
-        <if test="empNo != null">
+        <if test="empNo != null and empNo != ''">
             AND emp_no = #{empNo}
         </if>
-        <if test="mobile != null">
+        <if test="mobile != null and mobile != ''">
             AND mobile = #{mobile}
         </if>
-        <if test="tel != null">
+        <if test="tel != null and tel != ''">
             AND tel = #{tel}
         </if>
-        <if test="email != null">
+        <if test="email != null and email != ''">
             AND email = #{email}
         </if>
     </sql>
