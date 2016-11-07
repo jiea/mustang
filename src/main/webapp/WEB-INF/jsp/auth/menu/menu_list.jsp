@@ -80,7 +80,7 @@
                 openMenuDialog('添加子菜单', 'icon-001', '${path}/menu/openMenuDialog/add/child/' + row.id, '272px');
             }
         } else if (addType == 'parent') {
-            openMenuDialog('添加根菜单', 'icon-001', '${path}/menu/openMenuDialog?type=add&s=parent', '229px');
+            openMenuDialog('添加根菜单', 'icon-001', '${path}/menu/openMenuDialog/add/parent', '229px');
         }
     }
 

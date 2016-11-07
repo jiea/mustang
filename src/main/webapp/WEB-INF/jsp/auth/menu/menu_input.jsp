@@ -15,16 +15,16 @@
 						<input type="text" id="nameEn" name="nameEn" value="${menu.nameEn }" class="easyui-textbox" data-options="required:true,validType:['length[0,20]','hasRepateData[\'${path }/menu/verifyNameEn\', ${menu.id}]']" style="height: 30px;"/>
 					</td>
 				</tr>
-				<tr>
-					<td class="tdR"><span style="color: red">*</span>菜单图标：</td>
-					<td>
-						<input type="text" id="menuIcon" name="menuIcon" value="${menu.menuIcon }" class="easyui-textbox" data-options="required:true,editable:false,buttonIcon:'icon-051',onClickButton:function(){chooseIcon()}" style="height: 30px;"/>
-					</td>
-					<td class="tdR">排序号：</td>
-					<td>
-						<input type="text" id="menuSort" name="menuSort" value="${menu.menuSort }" class="easyui-numberbox" style="height: 30px;"/>
-					</td>
-				</tr>
+				<%--<tr>--%>
+					<%--<td class="tdR"><span style="color: red">*</span>菜单图标：</td>--%>
+					<%--<td>--%>
+						<%--<input type="text" id="menuIcon" name="menuIcon" value="${menu.menuIcon }" class="easyui-textbox" data-options="required:true,editable:false,buttonIcon:'icon-051',onClickButton:function(){chooseIcon()}" style="height: 30px;"/>--%>
+					<%--</td>--%>
+					<%--<td class="tdR">排序号：</td>--%>
+					<%--<td>--%>
+						<%--<input type="text" id="menuSort" name="menuSort" value="${menu.menuSort }" class="easyui-numberbox" style="height: 30px;"/>--%>
+					<%--</td>--%>
+				<%--</tr>--%>
 				<c:if test="${nodeType == 'child'}">
 				<tr>
 					<td class="tdR"><span style="color: red">*</span>菜单路径：</td>
@@ -56,23 +56,23 @@
 		}
 		var parentId = '${parentId}';
 		function submitForm(){
-			var $menuForm = $("#menuForm");
-			$menuForm.form('submit', {
-				url : '${path}/menu/doAddEditMenu',
+			var menuForm = $("#menuForm");
+			menuForm.form('submit', {
+				url : '${path}/menu/addModifyMenu',
 				onSubmit : function(){
 					if(parentId != ''){
 						$("#parentId").val(parentId);
 					}
-					if(!hasRepeat('${path }/menu/verifyNameZh', $("#nameZh").val(), $("#id").val())){
-						alertMsg("中文名称已存在", "warning");
-						return false;
-					}
-					if(!hasRepeat('${path }/menu/verifyNameEn', $("#nameEn").val(), $("#id").val())){
-						alertMsg("英文名称已存在", "warning");
-						return false;
-					}
-					if($menuForm.form("validate")){
-						$.messager.progress();
+					<%--if(!hasRepeat('${path }/menu/verifyNameZh', $("#nameZh").val(), $("#id").val())){--%>
+						<%--alertMsg("中文名称已存在", "warning");--%>
+						<%--return false;--%>
+					<%--}--%>
+					<%--if(!hasRepeat('${path }/menu/verifyNameEn', $("#nameEn").val(), $("#id").val())){--%>
+						<%--alertMsg("英文名称已存在", "warning");--%>
+						<%--return false;--%>
+					<%--}--%>
+					if(menuForm.form("validate")){
+                        MaskUtil.mask();
 						return true;
 					}else{
 						return false;
@@ -80,13 +80,13 @@
 				},
 				success : function(data){
 					var obj = eval("(" + data + ")");
-					$.messager.progress('close');
+					MaskUtil.unmask();
 					if(obj.success){
 						showSuccessMsgSlide();
-						closeDialog();
-						$menutg.treegrid('reload');
+						closeDialog(menuDialog);
+						menutg.treegrid('reload');
 					}else{
-						alertSysErrorMsg();
+                        alertMsg(obj.msg, 'error');
 					}
 				}
 			});

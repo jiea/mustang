@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.jiea.mustang.common.constants.SystemConst;
 import com.jiea.mustang.dto.Rtn;
 import com.jiea.mustang.entity.Emp;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,20 +69,32 @@ public class MenuController extends BaseController{
         return "auth/menu/menu_input";
     }
 
+    /**
+     * 新增或修改菜单
+     */
     @ResponseBody
-    @RequestMapping(value = "AddModifyMenu", method = RequestMethod.POST)
-    public Rtn AddModifyMenu(Menu menu){
-        if (menu != null){
-            // 添加
-            if(menu.getId() == null){
-                menu.setCreateTime(new Date());
-                menu.setCreator(1);
-                menuService.addMenu(menu);
-            }else{
-                menu.setOperateTime(new Date());
-                menu.setOperator(1);
-                menuService.updateMenuById(menu);
+    @RequestMapping(value = "addModifyMenu", method = RequestMethod.POST)
+    public Rtn addModifyMenu(Menu menu){
+        if (menu != null) {
+            try {
+                // 添加
+                if (menu.getId() == null) {
+                    menu.setCreateTime(new Date());
+                    menu.setCreator(1);
+                    menuService.addMenu(menu);
+                } else {
+                    // 修改
+                    menu.setOperateTime(new Date());
+                    menu.setOperator(1);
+                    menuService.updateMenuById(menu);
+                }
+                return new Rtn(true);
+            } catch (Exception e) {
+                log.error(e.getMessage(), e);
+                return new Rtn(false, SystemConst.ERROR);
             }
+        }else{
+            return new Rtn(false, "Menu实体为空");
         }
     }
 	

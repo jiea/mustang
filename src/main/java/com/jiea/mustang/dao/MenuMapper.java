@@ -25,4 +25,14 @@ public interface MenuMapper {
      * 根据主键查询菜单
      */
     Menu getMenuById(Integer id);
+
+    /**
+     * 新增菜单
+     */
+    void insert(Menu menu);
+
+    /**
+     * 根据主键修改菜单
+     */
+    void updateMenuById(Menu menu);
 }

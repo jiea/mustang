@@ -56,6 +56,16 @@ public class MenuServiceImpl implements MenuService {
         return menuMapper.getMenuById(id);
     }
 
+    @Override
+    public void addMenu(Menu menu) {
+        menuMapper.insert(menu);
+    }
+
+    @Override
+    public void updateMenuById(Menu menu) {
+        menuMapper.updateMenuById(menu);
+    }
+
     private List<Menu> getMenuList(List<Menu> menuList, int id) {
         List<Menu> menus = new ArrayList<>();
         for(Menu menu : menuList){

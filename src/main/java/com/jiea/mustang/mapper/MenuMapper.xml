@@ -58,21 +58,8 @@
 	  JOIN t_menu m 
 	    ON mr.menu_id = m.id 
 	    WHERE ur.emp_id = #{empId};
-  </select>
-
-    <insert id="insert" parameterType="com.jiea.mustang.entity.Menu">
-    insert into t_menu (id, name_en, name_zh, 
-      menu_url, parent_id, menu_icon, 
-      menu_sort, create_time, creator, 
-      operate_time, operator, memo
-      )
-    values (#{id,jdbcType=INTEGER}, #{nameEn,jdbcType=VARCHAR}, #{nameZh,jdbcType=VARCHAR}, 
-      #{menuUrl,jdbcType=VARCHAR}, #{parentId,jdbcType=INTEGER}, #{menuIcon,jdbcType=VARCHAR}, 
-      #{menuSort,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}, 
-      #{operateTime,jdbcType=TIMESTAMP}, #{operator,jdbcType=INTEGER}, #{memo,jdbcType=VARCHAR}
-      )
-  </insert>
-    <insert id="insertSelective" parameterType="com.jiea.mustang.entity.Menu">
+    </select>
+    <insert id="insert" parameterType="menu">
         insert into t_menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
@@ -151,7 +138,7 @@
             </if>
         </trim>
     </insert>
-    <update id="updateByPrimaryKeySelective" parameterType="com.jiea.mustang.entity.Menu">
+    <update id="updateMenuById" parameterType="menu">
         update t_menu
         <set>
             <if test="nameEn != null">
