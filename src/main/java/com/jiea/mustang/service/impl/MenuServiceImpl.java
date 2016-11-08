@@ -66,6 +66,16 @@ public class MenuServiceImpl implements MenuService {
         menuMapper.updateMenuById(menu);
     }
 
+    @Override
+    public int verifyNameZh(String nameZh, Integer id) {
+        return menuMapper.verifyNameZh(nameZh, id);
+    }
+
+    @Override
+    public int verifyNameEn(String nameEn, Integer id) {
+        return menuMapper.verifyNameEn(nameEn, id);
+    }
+
     private List<Menu> getMenuList(List<Menu> menuList, int id) {
         List<Menu> menus = new ArrayList<>();
         for(Menu menu : menuList){

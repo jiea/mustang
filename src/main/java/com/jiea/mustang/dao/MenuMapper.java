@@ -3,6 +3,7 @@ package com.jiea.mustang.dao;
 import java.util.List;
 
 import com.jiea.mustang.entity.Menu;
+import org.apache.ibatis.annotations.Param;
 
 public interface MenuMapper {
 	
@@ -35,4 +36,14 @@ public interface MenuMapper {
      * 根据主键修改菜单
      */
     void updateMenuById(Menu menu);
+
+    /**
+     * 验证中文名称是否存在
+     */
+    int verifyNameZh(@Param("nameZh") String nameZh, @Param("id") Integer id);
+
+    /**
+     * 验证英文名称是否存在
+     */
+    int verifyNameEn(@Param("nameEn") String nameEn, @Param("id") Integer id);
 }

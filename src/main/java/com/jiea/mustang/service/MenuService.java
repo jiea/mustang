@@ -30,4 +30,14 @@ public interface MenuService {
      * 根据主键修改菜单
      */
     void updateMenuById(Menu menu);
+
+    /**
+     * 检查中文名称是否重复
+     */
+    int verifyNameZh(String nameZh, Integer id);
+
+    /**
+     * 检查英文名称是否存在
+     */
+    int verifyNameEn(String nameEn, Integer id);
 }

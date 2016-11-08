@@ -10,10 +10,7 @@ import com.jiea.mustang.entity.Emp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import com.jiea.mustang.entity.Menu;
 import com.jiea.mustang.service.MenuService;
@@ -59,7 +56,10 @@ public class MenuController extends BaseController{
     @RequestMapping(value = "openMenuDialog/{addType}/{nodeType}/{id}", method = RequestMethod.GET)
     public String openMenuDialog(@PathVariable("addType") String addType, @PathVariable("nodeType") String nodeType, @PathVariable("id") Integer id, Model model) {
         if ("add".equals(addType)) {
-            model.addAttribute("parentId", id);
+            // 如果id=-1则为父菜单
+            if(id != -1){
+                model.addAttribute("parentId", id);
+            }
         } else if ("modify".equals(addType)) {
             Menu menu = menuService.getMenuById(id);
             model.addAttribute("menu", menu);
@@ -96,6 +96,42 @@ public class MenuController extends BaseController{
         }else{
             return new Rtn(false, "Menu实体为空");
         }
+    }
+
+    /**
+     * 验证中文名称是否存在
+     */
+    @ResponseBody
+    @RequestMapping(value = "verifyNameZh", method = RequestMethod.GET)
+    public Rtn verifyNameZh(@RequestParam("val") String nameZh, @RequestParam("id") Integer id){
+        try {
+            int count = menuService.verifyNameZh(nameZh, id);
+            if (count > 0) {
+                return new Rtn(false, "中文名称已存在");
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new Rtn(false, SystemConst.ERROR);
+        }
+        return new Rtn(true);
+    }
+
+    /**
+     * 验证英文名称是否存在
+     */
+    @ResponseBody
+    @RequestMapping(value = "verifyNameEn", method = RequestMethod.GET)
+    public Rtn verifyNameEn(@RequestParam("val") String nameEn, @RequestParam("id") Integer id){
+        try {
+            int count = menuService.verifyNameEn(nameEn, id);
+            if (count > 0) {
+                return new Rtn(false, "英文名称已存在");
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new Rtn(false, SystemConst.ERROR);
+        }
+        return new Rtn(true);
     }
 	
 }

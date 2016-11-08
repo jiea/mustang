@@ -63,15 +63,8 @@
 					if(parentId != ''){
 						$("#parentId").val(parentId);
 					}
-					<%--if(!hasRepeat('${path }/menu/verifyNameZh', $("#nameZh").val(), $("#id").val())){--%>
-						<%--alertMsg("中文名称已存在", "warning");--%>
-						<%--return false;--%>
-					<%--}--%>
-					<%--if(!hasRepeat('${path }/menu/verifyNameEn', $("#nameEn").val(), $("#id").val())){--%>
-						<%--alertMsg("英文名称已存在", "warning");--%>
-						<%--return false;--%>
-					<%--}--%>
-					if(menuForm.form("validate")){
+
+					if(menuForm.form("validate") && hasRepeat('${ctx}/menu/verifyNameZh', $("#nameZh").val(), $("#id").val()) && hasRepeat('${ctx}/menu/verifyNameEn', $("#nameEn").val(), $("#id").val())){
                         MaskUtil.mask();
 						return true;
 					}else{

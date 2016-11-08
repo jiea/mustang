@@ -16,6 +16,16 @@
         <result column="memo" property="memo" jdbcType="VARCHAR"/>
     </resultMap>
 
+    <!--验证英文名称是否存在-->
+    <select id="verifyNameEn" resultType="_int">
+      SELECT COUNT(1) FROM t_menu WHERE name_en = #{nameEn} AND id != #{id}
+    </select>
+
+    <!--验证中文名称是否存在-->
+    <select id="verifyNameZh" resultType="_int">
+      SELECT COUNT(1) FROM t_menu WHERE name_zh = #{nameZh} AND id != #{id}
+    </select>
+
     <!--根据主键查询菜单-->
     <select id="getMenuById" parameterType="int" resultType="menu">
       SELECT

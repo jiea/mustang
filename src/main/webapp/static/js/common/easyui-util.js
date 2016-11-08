@@ -66,19 +66,17 @@ function hasRepeat(url, val, id){
 	var flag = true;
 	$.ajax({
 		url : url,
-		type : 'post',
+		type : 'get',
 		data : {val : val, id : id},
 		dataType : 'json',
 		async : false,
 		success : function(data) {
-			if (data.success) {
-				flag = data.repeat;
-			}else{
-				alertSysErrMsg();
-			}
+            flag = data.success;
+            if(!data.success){
+                alertMsg(data.msg, 'error');
+            }
 		}
 	});
-	
 	return flag;
 }
 

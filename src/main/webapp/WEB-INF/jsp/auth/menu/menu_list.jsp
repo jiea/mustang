@@ -77,10 +77,10 @@
             if (row == null) {
                 alertMsg('请选择一个节点', 'warning');
             } else {
-                openMenuDialog('添加子菜单', 'icon-001', '${path}/menu/openMenuDialog/add/child/' + row.id, '272px');
+                openMenuDialog('添加子菜单', 'icon-001', '${ctx}/menu/openMenuDialog/add/child/' + row.id, '272px');
             }
         } else if (addType == 'parent') {
-            openMenuDialog('添加根菜单', 'icon-001', '${path}/menu/openMenuDialog/add/parent', '229px');
+            openMenuDialog('添加根菜单', 'icon-001', '${ctx}/menu/openMenuDialog/add/parent/-1', '229px');
         }
     }
 
@@ -91,9 +91,9 @@
             alertMsg('请选择一个节点', 'warning');
         } else {
             if (row.parentId == 0) {
-                openMenuDialog('修改菜单', 'icon-002', '${path}/menu/openMenuDialog?type=modify&s=parent&id=' + row.id, '229px');
+                openMenuDialog('修改菜单', 'icon-002', '${ctx}/menu/openMenuDialog/modify/parent/' + row.id, '229px');
             } else {
-                openMenuDialog('修改菜单', 'icon-002', '${path}/menu/openMenuDialog?type=modify&s=child&id=' + row.id, '272px');
+                openMenuDialog('修改菜单', 'icon-002', '${ctx}/menu/openMenuDialog/modify/child/' + row.id, '272px');
             }
         }
     }
@@ -111,7 +111,7 @@
                     if (r) {
                         $.ajax({
                             type: 'post',
-                            url: '${path}/menu/deleteMenu',
+                            url: '${ctx}/menu/deleteMenu',
                             data: {id: row.id},
                             dataType: 'json',
                             beforeSend: function () {
@@ -169,7 +169,7 @@
             iconCls: 'icon-051',
             closable: true,
             cache: false,
-            href: "${path}/menu/openIconDialog",
+            href: "${ctx}/menu/openIconDialog",
             modal: true
         });
     }
