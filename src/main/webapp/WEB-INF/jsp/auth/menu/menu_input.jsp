@@ -42,9 +42,9 @@
 				</tr>
 				<tr>
 					<td colspan="4" align="center">
-						<a href="javascript:;" class="easyui-linkbutton" iconCls="icon-011" onclick="submitForm();">提交</a>
+						<a href="javascript:;" class="easyui-linkbutton" iconCls="icon icon-004" onclick="submitForm();">提交</a>
 						&nbsp;&nbsp;&nbsp;
-						<a href="javascript:;" class="easyui-linkbutton" iconCls="icon-013" onclick="closeDialog(menuDialog);">取消</a>
+						<a href="javascript:;" class="easyui-linkbutton" iconCls="icon icon-005" onclick="closeDialog(menuDialog);">取消</a>
 					</td>
 				</tr>
 			</table>

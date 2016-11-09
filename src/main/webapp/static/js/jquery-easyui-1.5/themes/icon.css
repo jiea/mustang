@@ -1,30 +1,31 @@
+.icon{ background:url(icons/tabicons.png) no-repeat;width:18px; line-height:18px; display:inline-block;}
+
 .icon-001{
-	background:url('icons/add.png') no-repeat;
+    background-position: -20px 0px;
 }
+
 .icon-002{
-	background:url('icons/modify.png') no-repeat center center;
+    background-position: -180px -220px;
 }
+
+.icon-003{
+    background-position: 0px -260px;
+}
+
 .icon-004{
-	background:url('icons/tab_remove.png') no-repeat center center;
+    background-position: 0px 0px;
 }
+
 .icon-005{
-	background:url('icons/taball_remove.png') no-repeat center center;
+    background-position: -140px -120px;
 }
-.icon-008{
-	background:url('icons/refresh.png') no-repeat center center;
+
+.icon-006{
+    background:url('icons/remove_tabsall.png') no-repeat center center;
 }
-.icon-009{
-	background:url('icons/disk.png') no-repeat center center;
-}
-.icon-011{
-	background:url('icons/okay.png') no-repeat center center;
-}
-.icon-013{
-	background:url('icons/cancel.png') no-repeat center center;
-}
-.icon-014{
-	background:url('icons/cancel_1.png') no-repeat center center;
-}
+
+
+
 .icon-016{
 	background:url('icons/search.png') no-repeat center center;
 }
@@ -165,9 +166,7 @@
 .icon-081{
 	background:url('icons/clear.png') no-repeat center center;
 }
-.icon-082{
-	background:url('icons/remove_tabsall.png') no-repeat center center;
-}
+
 .icon-083{
 	background:url('icons/expand.png') no-repeat center center;
 }

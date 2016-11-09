@@ -40,4 +40,9 @@ public interface MenuService {
      * 检查英文名称是否存在
      */
     int verifyNameEn(String nameEn, Integer id);
+
+    /**
+     * 根据主键删除菜单
+     */
+    int deleteMenu(Integer id);
 }

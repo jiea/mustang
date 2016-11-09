@@ -11,16 +11,16 @@
     <table id="menutg"></table>
 </div>
 <div id="toolbar">
-    <a href="javascript:;" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon-001',plain:true,width:120">添加</a>
+    <a href="javascript:;" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon icon-001',plain:true,width:120">添加</a>
 
     <div id="mm">
         <div onclick="toAddMenu('child');">子菜单</div>
         <div onclick="toAddMenu('parent');">根菜单</div>
     </div>
     <span style="color:#999">|</span>
-    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-002',plain:true" onclick="toModifyMenu();">修改</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="toModifyMenu();">修改</a>
     <span style="color:#999">|</span>
-    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon-084',plain:true" onclick="toDeleteMenu();">删除</a>
+    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon icon-006',plain:true" onclick="toDeleteMenu();">删除</a>
     <span style="color:#999">|</span>
     <a href="javascript:void(0);" id="ec" style="float:right;padding:5px;" onclick="expandCollapseAll();">折叠</a>
 </div>
@@ -115,10 +115,10 @@
                             data: {id: row.id},
                             dataType: 'json',
                             beforeSend: function () {
-                                $.messager.progress();
+                                MaskUtil.mask();
                             },
                             complete: function () {
-                                $.messager.progress('close');
+                                MaskUtil.unmask();
                             },
                             success: function (data) {
                                 if (data.success) {
@@ -126,7 +126,7 @@
                                     menutg.treegrid('unselectAll');
                                     showSuccessMsgSlide();
                                 } else {
-                                    alertSysErrorMsg();
+                                    alertMsg(data.msg, 'error');
                                 }
                             }
                         });

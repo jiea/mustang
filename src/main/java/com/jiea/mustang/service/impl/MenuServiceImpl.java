@@ -76,6 +76,11 @@ public class MenuServiceImpl implements MenuService {
         return menuMapper.verifyNameEn(nameEn, id);
     }
 
+    @Override
+    public int deleteMenu(Integer id) {
+        return menuMapper.deleteMenu(id);
+    }
+
     private List<Menu> getMenuList(List<Menu> menuList, int id) {
         List<Menu> menus = new ArrayList<>();
         for(Menu menu : menuList){

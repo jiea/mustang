@@ -42,13 +42,13 @@
 		<table id="empdg" style="width:100%;height:100%;"></table>
 	</div>
 	<div id="toolbar">
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-001',plain:true" onclick="toAddEmp();">添加</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-001',plain:true" onclick="toAddEmp();">添加</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-002',plain:true" onclick="toModifyEmp();">修改</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="toModifyEmp();">修改</a>
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-036',plain:true" onclick="authorization();">用户授权</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-035',plain:true" onclick="resetPassword();">密码重置</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-003',plain:true" onclick="resetPassword();">密码重置</a>
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-033',plain:true" onclick="disable();">停用</a>
 		<span style="color:#999">|</span>
@@ -144,7 +144,7 @@
 		
 		// 添加
 		function toAddEmp(){
-			openEmpDialog('&nbsp;添加员工', 'icon-001', '${ctx}/emp/toAddEmp');
+			openEmpDialog('&nbsp;添加员工', 'icon icon-001', '${ctx}/emp/toAddEmp');
 		}
 
 		// 修改
@@ -155,7 +155,7 @@
 					showMsgSlide('请选择一条记录操作');
 					return;
 				}
-				openEmpDialog('&nbsp;修改员工', 'icon-002', '${ctx}/emp/toModifyEmp/'+rows[0].id);
+				openEmpDialog('&nbsp;修改员工', 'icon icon-002', '${ctx}/emp/toModifyEmp/'+rows[0].id);
 			}else{
 				showMsgSlide('请选择要修改的记录');
 			}

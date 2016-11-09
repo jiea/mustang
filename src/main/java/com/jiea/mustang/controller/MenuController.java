@@ -133,5 +133,24 @@ public class MenuController extends BaseController{
         }
         return new Rtn(true);
     }
-	
+
+    /**
+     * 根据主键删除菜单
+     */
+    @ResponseBody
+    @RequestMapping(value = "deleteMenu", method = RequestMethod.POST)
+    public Rtn deleteMenu(@RequestParam("id") Integer id){
+        try {
+            int count = menuService.deleteMenu(id);
+            if(count <= 0){
+                return new Rtn(false, "删除菜单失败");
+            }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new Rtn(false, SystemConst.ERROR);
+        }
+
+        return new Rtn(true);
+    }
+
 }
