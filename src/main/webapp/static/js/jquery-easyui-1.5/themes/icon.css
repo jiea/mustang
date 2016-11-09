@@ -24,6 +24,34 @@
     background:url('icons/remove_tabsall.png') no-repeat center center;
 }
 
+.icon-007{
+	background-position: -200px -220px;
+}
+
+.icon-008{
+	background-position: -80px -420px;
+}
+
+.icon-009{
+	background-position: -280px -440px;
+}
+
+.icon-010{
+	background-position: -380px -220px;
+}
+
+.icon-011{
+	background-position: -80px -20px;
+}
+
+.icon-012{
+	background-position: -240px -20px;
+}
+
+
+
+
+
 
 
 .icon-016{
@@ -136,9 +164,7 @@
 .icon-061{
 	background:url('icons/information.png') no-repeat center center;
 }
-.icon-062{
-	background:url('icons/house.png') no-repeat center center;
-}
+
 .icon-063{
 	background:url('icons/clock.png') no-repeat center center;
 }

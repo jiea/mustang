@@ -159,20 +159,6 @@
             $ec.text('折叠');
         }
     }
-
-    //选择菜单图标
-    function chooseIcon() {
-        iconDialog = $('#iconDialog').dialog({
-            width: '65%',
-            height: '90%',
-            title: '&nbsp;选择图标<sapn style="color:#0092DC">（双击图片选择）</span>',
-            iconCls: 'icon-051',
-            closable: true,
-            cache: false,
-            href: "${ctx}/menu/openIconDialog",
-            modal: true
-        });
-    }
 </script>
 </body>
 </html>

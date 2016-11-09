@@ -15,23 +15,23 @@
 						<input type="text" id="nameEn" name="nameEn" value="${menu.nameEn }" class="easyui-textbox" data-options="required:true,validType:['length[0,20]','hasRepateData[\'${path }/menu/verifyNameEn\', ${menu.id}]']" style="height: 30px;"/>
 					</td>
 				</tr>
-				<%--<tr>--%>
-					<%--<td class="tdR"><span style="color: red">*</span>菜单图标：</td>--%>
-					<%--<td>--%>
-						<%--<input type="text" id="menuIcon" name="menuIcon" value="${menu.menuIcon }" class="easyui-textbox" data-options="required:true,editable:false,buttonIcon:'icon-051',onClickButton:function(){chooseIcon()}" style="height: 30px;"/>--%>
-					<%--</td>--%>
-					<%--<td class="tdR">排序号：</td>--%>
-					<%--<td>--%>
-						<%--<input type="text" id="menuSort" name="menuSort" value="${menu.menuSort }" class="easyui-numberbox" style="height: 30px;"/>--%>
-					<%--</td>--%>
-				<%--</tr>--%>
+				<tr>
+					<td class="tdR"><span style="color: red">*</span>菜单图标：</td>
+					<td>
+						<input type="text" id="menuIcon" name="menuIcon" value="${menu.menuIcon }" class="easyui-textbox" data-options="required:true,editable:false,buttonIcon:'icon icon-012',onClickButton:function(){chooseIcon()}" style="height: 30px;"/>
+					</td>
+					<td class="tdR">排序号：</td>
+					<td>
+						<input type="text" id="menuSort" name="menuSort" value="${menu.menuSort }" class="easyui-numberbox" style="height: 30px;"/>
+					</td>
+				</tr>
 				<c:if test="${nodeType == 'child'}">
 				<tr>
 					<td class="tdR"><span style="color: red">*</span>菜单路径：</td>
 					<td colspan="3">
 						<input type="text" id="menuUrl" name="menuUrl" value="${menu.menuUrl }" class="easyui-textbox" data-options="required:true,validType:'length[0,50]'" style="width:300px;height: 30px;"/>
 					</td>
-					
+
 				</tr>
 				</c:if>
 				<tr>
@@ -82,6 +82,20 @@
                         alertMsg(obj.msg, 'error');
 					}
 				}
+			});
+		}
+
+		//选择菜单图标
+		function chooseIcon() {
+			iconDialog = $('#iconDialog').dialog({
+				width: '65%',
+				height: '90%',
+				title: '&nbsp;选择图标<sapn style="color:#0092DC">（双击图片选择）</span>',
+				iconCls: 'icon icon-012',
+				closable: true,
+				cache: false,
+				href: "${ctx}/menu/openIconDialog",
+				modal: true
 			});
 		}
 	</script>

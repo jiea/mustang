@@ -25,7 +25,7 @@
 			success : function(msg){
 			     _menus = {"menus" : msg};
 			},
-			error : function(msg){
+			error : function(){
 				alertSysErrMsg();
 			}
 		});
@@ -40,7 +40,7 @@
 	        	var url = _url + o.menuUrl;
 				menulist += '<li>' +
 								'<div>' +
-									'<a ref="'+o.id+'" href="javascript:;" rel="'+url+'" ><span class="'+o.menuIcon+'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nav">' + o.nameZh + '</span></a>' +
+									'<a ref="'+o.id+'" href="javascript:;" rel="'+url+'" ><span class="icon '+o.menuIcon+'" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="nav">' + o.nameZh + '</span></a>' +
 						        '</div>' +
 						     '</li>';
 	        })
@@ -48,7 +48,7 @@
 			$('#nav').accordion('add', {
 	            title: n.nameZh,
 	            content: menulist,
-	            iconCls: n.menuIcon
+	            iconCls: 'icon '+n.menuIcon
 	        });
 	    });
 	
@@ -78,7 +78,7 @@
 		$.each(_menus.menus, function(i, n) {
 			 $.each(n.children, function(j, o) {
 			 	if(o.id == id){
-					icon = o.menuIcon;
+					icon = 'icon '+o.menuIcon;
 				}
 			 })
 		})

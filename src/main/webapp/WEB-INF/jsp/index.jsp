@@ -20,7 +20,7 @@
 	<div data-options="region:'south', border:false" style="height: 30px; width: 100%">
 		<%@ include file="/WEB-INF/jsp/layout/south.jsp"%>
 	</div>
-	<div data-options="region:'west', title:'导航菜单', split:true, border:true" data-options="iconCls='icon-024'" style="width: 193px; overflow: auto;">
+	<div data-options="region:'west', title:'导航菜单', split:true, border:true, iconCls:'icon icon-011'" style="width: 193px; overflow: auto;">
 		<%@ include file="/WEB-INF/jsp/layout/west.jsp"%>
 	</div>
 	<div data-options="region:'center', border:true" style="overflow: hidden;">
@@ -81,7 +81,7 @@
 			tabs.tabs('addIframeTab', {
 				tab : {
 					title : homeTitle,
-					iconCls : 'icon-062',
+					iconCls : 'icon icon-007',
 					tools : [ {
 						iconCls : 'icon-027',
 						handler : function() {

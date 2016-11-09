@@ -1,19 +1,16 @@
 package com.jiea.mustang.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
 import com.jiea.mustang.common.constants.SystemConst;
 import com.jiea.mustang.dto.Rtn;
-import com.jiea.mustang.entity.Emp;
+import com.jiea.mustang.entity.Menu;
+import com.jiea.mustang.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import com.jiea.mustang.entity.Menu;
-import com.jiea.mustang.service.MenuService;
+import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("menu")
@@ -151,6 +148,14 @@ public class MenuController extends BaseController{
         }
 
         return new Rtn(true);
+    }
+
+    /**
+     * 打开选择图片弹窗
+     */
+    @RequestMapping(value = "openIconDialog", method = RequestMethod.GET)
+    public String openIconDialog(){
+        return "auth/menu/icon";
     }
 
 }
