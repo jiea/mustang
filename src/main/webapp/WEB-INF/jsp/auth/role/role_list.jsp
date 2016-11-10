@@ -28,6 +28,7 @@
     <table id="roledg" style="width:100%;height:100%;"></table>
 </div>
 <div id="roleAddModifyDialog"></div>
+
 <script type="text/javascript">
     var roledg;
     var roleAddModifyDialog;
@@ -66,7 +67,7 @@
                     }
                 }
             }]],
-            onDblClickCell : onDblClickCell,
+            onDblClickRow : onDblClickRow,
             onEndEdit: onEndEdit,
             onLoadError : function(){alertSysErrMsg();}
         });
@@ -93,21 +94,8 @@
         }
     }
 
-    function onDblClickCell(index, field){
-        if (editIndex != index){
-            if (endEditing()){
-                roledg.datagrid('selectRow', index).datagrid('beginEdit', index);
-                var ed = roledg.datagrid('getEditor', {index:index,field:field});
-                if (ed){
-                    ($(ed.target).data('textbox') ? $(ed.target).textbox('textbox') : $(ed.target)).focus();
-                }
-                editIndex = index;
-            } else {
-                setTimeout(function(){
-                    roledg.datagrid('selectRow', editIndex);
-                },0);
-            }
-        }
+    function onDblClickRow(index){
+        roledg.datagrid('selectRow', index).datagrid('beginEdit', index);
     }
 
     function onEndEdit(index, row){
