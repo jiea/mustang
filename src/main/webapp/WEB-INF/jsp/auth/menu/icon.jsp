@@ -52,11 +52,16 @@
         <a href="#"><li><img class="img icon icon-006"><p>icon-006</p></li></a>
         <a href="#"><li><img class="img icon icon-007"><p>icon-007</p></li></a>
         <a href="#"><li><img class="img icon icon-008"><p>icon-008</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/disk.png"><p>icon-009</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/okay.png"><p>icon-011</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/cancel.png"><p>icon-013</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/cancel_1.png"><p>icon-014</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/search.png"><p>icon-016</p></li></a>
+        <a href="#"><li><img class="img icon icon-009"><p>icon-009</p></li></a>
+        <a href="#"><li><img class="img icon icon-010"><p>icon-010</p></li></a>
+        <a href="#"><li><img class="img icon icon-011"><p>icon-011</p></li></a>
+        <a href="#"><li><img class="img icon icon-012"><p>icon-012</p></li></a>
+        <a href="#"><li><img class="img icon icon-013"><p>icon-013</p></li></a>
+        <a href="#"><li><img class="img icon icon-014"><p>icon-014</p></li></a>
+        <a href="#"><li><img class="img icon icon-015"><p>icon-015</p></li></a>
+        <a href="#"><li><img class="img icon icon-016"><p>icon-016</p></li></a>
+        <a href="#"><li><img class="img icon icon-017"><p>icon-017</p></li></a>
+        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/print.png"><p>icon-013</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/print.png"><p>icon-017</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/help.png"><p>icon-018</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/remove_tabsall.png"><p>icon-019</p></li></a>

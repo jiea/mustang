@@ -72,7 +72,8 @@
 	    ON ur.role_id = mr.role_id 
 	  JOIN t_menu m 
 	    ON mr.menu_id = m.id 
-	    WHERE ur.emp_id = #{empId};
+	    WHERE ur.emp_id = #{empId}
+	  ORDER BY m.menu_sort
     </select>
     <insert id="insert" parameterType="menu">
         insert into t_menu

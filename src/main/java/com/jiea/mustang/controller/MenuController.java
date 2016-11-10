@@ -25,8 +25,13 @@ public class MenuController extends BaseController{
 	@ResponseBody
 	@RequestMapping(value = "load", method = RequestMethod.GET)
 	public List<Menu> load(){
-        List<Menu> leftMenus = menuService.getLeftMenu();
-		return leftMenus;
+        List<Menu> leftMenus = null;
+        try {
+            leftMenus = menuService.getLeftMenu();
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+        }
+        return leftMenus;
 	}
 
     /**

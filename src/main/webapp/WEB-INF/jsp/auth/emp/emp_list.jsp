@@ -24,9 +24,9 @@
 						<input type="text" class="easyui-textbox" id="mobile" name="mobile">
 					</td>
 					<td rowspan="2" width="15%">
-						<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-016',width:70,height:30" onclick="empSearch();">查&nbsp;询</a>
+						<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-016',width:70,height:30" onclick="empSearch();">查&nbsp;询</a>
 						&nbsp;&nbsp;&nbsp;
-						<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-085',width:70,height:30" onclick="clearForm(empdg)">清&nbsp;空</a>
+						<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-017',width:70,height:30" onclick="clearForm(empdg)">清&nbsp;空</a>
 					</td>
 				</tr>
 				<tr>

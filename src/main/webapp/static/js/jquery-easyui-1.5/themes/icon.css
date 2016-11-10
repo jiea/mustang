@@ -48,18 +48,39 @@
 	background-position: -240px -20px;
 }
 
-
-
-
-
-
-
-.icon-016{
+.icon-013{
 	background:url('icons/search.png') no-repeat center center;
 }
-.icon-017{
-	background:url('icons/print.png') no-repeat center center;
+
+.icon-014{
+    background:url('icons/clear.png') no-repeat center center;
 }
+
+.icon-015{
+    background-position: -360px -200px;
+}
+
+.icon-016{
+    background-position: -220px -200px;
+}
+
+.icon-017{
+    background-position: -340px -40px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .icon-018{
 	background:url('icons/help.png') no-repeat center center;
 }

@@ -1,17 +1,14 @@
 package com.jiea.mustang.dao;
 
+import com.jiea.mustang.entity.Emp;
 import com.jiea.mustang.entity.Role;
 
+import java.util.List;
+
 public interface RoleMapper {
-    int deleteByPrimaryKey(Integer id);
 
-    int insert(Role record);
-
-    int insertSelective(Role record);
-
-    Role selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(Role record);
-
-    int updateByPrimaryKey(Role record);
+    /**
+     * 角色分页列表
+     */
+    List<Emp> getRoleList(RoleMapper roleMapper);
 }
