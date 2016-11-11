@@ -81,29 +81,35 @@
     }
 
     var editIndex = undefined;
-    function endEditing(){
-        if(editIndex == undefined){
-            return true;
+    function endEditing() {
+        if (editIndex == undefined) {
+            return true
         }
-        if(roledg.datagrid('validateRow', editIndex)){
+        // validateRow方法不知道什么作用
+        if (roledg.datagrid('validateRow', editIndex)) {
             roledg.datagrid('endEdit', editIndex);
             editIndex = undefined;
             return true;
-        }else{
+        } else {
             return false;
         }
     }
 
-    function onDblClickRow(index){
-        roledg.datagrid('selectRow', index).datagrid('beginEdit', index);
+    function onDblClickRow(index) {
+        if (editIndex != index) {
+            if (endEditing()) {
+                roledg.datagrid('selectRow', index).datagrid('beginEdit', index);
+                editIndex = index;
+            } else {
+                setTimeout(function () {
+                    roledg.datagrid('selectRow', editIndex);
+                }, 100);
+            }
+        }
     }
 
     function onEndEdit(index, row){
-        var ed = $(this).datagrid('getEditor', {
-            index: index,
-            field: 'productid'
-        });
-        row.productname = $(ed.target).combobox('getText');
+        console.log("onEndEdit");
     }
 
 
