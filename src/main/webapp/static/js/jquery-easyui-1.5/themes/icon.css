@@ -68,22 +68,25 @@
     background-position: -340px -40px;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 .icon-018{
-	background:url('icons/help.png') no-repeat center center;
+    background-position: -160px -140px;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .icon-022{
 	background:url('icons/sum.png') no-repeat center center;
 }

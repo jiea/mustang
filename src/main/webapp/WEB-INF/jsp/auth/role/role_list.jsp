@@ -27,17 +27,29 @@
 <div data-options="region:'center', border:false">
     <table id="roledg" style="width:100%;height:100%;"></table>
 </div>
+<div id="toolbar">
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-001',plain:true" onclick="append();">添加</a>
+    <span style="color:#999">|</span>
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="edit();">编辑</a>
+    <span style="color:#999">|</span>
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-018',plain:true" onclick="save();">保存</a>
+    <span style="color:#999">|</span>
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-006',plain:true" onclick="remove();">删除</a>
+</div>
 <div id="roleAddModifyDialog"></div>
 
 <script type="text/javascript">
     var roledg;
     var roleAddModifyDialog;
+    // 当前编辑的行
+    var editIndex = undefined;
     $(function(){
         roledg = $('#roledg').datagrid({
             url : '${ctx}/role/list',
             method : 'get',
             pagination : true,
             fit : true,
+            toolbar : '#toolbar',
             singleSelect : true,
             rownumbers : true,
             striped : true,
@@ -68,53 +80,71 @@
                 }
             }]],
             onDblClickRow : onDblClickRow,
-            onEndEdit: onEndEdit,
+            onAfterEdit: onAfterEdit,
             onLoadError : function(){alertSysErrMsg();}
         });
     });
 
     // search
     function roleSearch(){
-        roledg.datagrid('load', serializeForm($('#roleSearch')));
-        roledg.datagrid('clearSelections');
-        roledg.datagrid('clearChecked');
+        getChanges();
+//        roledg.datagrid('load', serializeForm($('#roleSearch')));
+//        roledg.datagrid('clearSelections');
+//        roledg.datagrid('clearChecked');
     }
 
-    var editIndex = undefined;
-    function endEditing() {
-        if (editIndex == undefined) {
-            return true
-        }
-        // validateRow方法不知道什么作用
-        if (roledg.datagrid('validateRow', editIndex)) {
-            roledg.datagrid('endEdit', editIndex);
-            editIndex = undefined;
-            return true;
-        } else {
-            return false;
-        }
-    }
 
-    function onDblClickRow(index) {
-        if (editIndex != index) {
-            if (endEditing()) {
-                roledg.datagrid('selectRow', index).datagrid('beginEdit', index);
-                editIndex = index;
+
+    // 编辑
+    function edit() {
+        var row = roledg.datagrid('getSelections');
+        if (row.length > 0) {
+            if (row.length > 1) {
+                showMsgSlide('请选择一条记录进行编辑');
+                return;
             } else {
-                setTimeout(function () {
-                    roledg.datagrid('selectRow', editIndex);
-                }, 100);
+                var rowIndex = roledg.datagrid('getRowIndex', row[0]);
+                if (editIndex == rowIndex) {
+                    return;
+                }
+                if (editIndex != undefined) {
+                    roledg.datagrid('rejectChanges', editIndex).datagrid('endEdit', editIndex);
+                }
+                editIndex = rowIndex;
+                roledg.datagrid('beginEdit', editIndex);
             }
+        } else {
+            showMsgSlide('请选择要编辑的记录');
         }
     }
 
-    function onEndEdit(index, row){
-        console.log("onEndEdit");
+    // 保存
+    function save(){
+        roledg.datagrid("endEdit", editIndex);
     }
 
+    // 双击行
+    function onDblClickRow(index) {
+        if (editIndex != undefined) {
+            roledg.datagrid('rejectChanges', editIndex).datagrid('endEdit', editIndex);
+        }
+        editIndex = index;
+        roledg.datagrid('beginEdit', index);
+    }
 
+    // 编辑完成之后执行（执行endEdit方法之后，执行onAferEdit方法）
+    function onAfterEdit(){
+        var changes = roledg.datagrid('getChanges');
+        if(changes.length != 0){
+            $.post('${ctx}/role/', '', );
+        }
+    }
 
-
+    function accept(){
+        if(endEditing()){
+            roledg.datagrid();
+        }
+    }
 
     // 添加
     function toAddEmp(){

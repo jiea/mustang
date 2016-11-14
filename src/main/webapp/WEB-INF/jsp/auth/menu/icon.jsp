@@ -61,19 +61,9 @@
         <a href="#"><li><img class="img icon icon-015"><p>icon-015</p></li></a>
         <a href="#"><li><img class="img icon icon-016"><p>icon-016</p></li></a>
         <a href="#"><li><img class="img icon icon-017"><p>icon-017</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/print.png"><p>icon-013</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/print.png"><p>icon-017</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/help.png"><p>icon-018</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/remove_tabsall.png"><p>icon-019</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/expand.png"><p>icon-020</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/collapse.png"><p>icon-021</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/sum.png"><p>icon-022</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/menu_tree.png"><p>icon-024</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/key_go.png"><p>icon-028</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/user_disuse.png"><p>icon-033</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/user_enabled.png"><p>icon-034</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/user_pwd_reset.png"><p>icon-035</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/wrench_orange.png"><p>icon-037</p></li></a>
+        <a href="#"><li><img class="img icon icon-017"><p>icon-018</p></li></a>
+
+
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/star.png"><p>icon-038</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/stop.png"><p>icon-039</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/sitemap_color.png"><p>icon-040</p></li></a>
