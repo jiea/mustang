@@ -104,7 +104,7 @@ public class MenuController extends BaseController{
      * 验证中文名称是否存在
      */
     @ResponseBody
-    @RequestMapping(value = "verifyNameZh", method = RequestMethod.GET)
+    @RequestMapping(value = "verifyNameZh", method = RequestMethod.POST)
     public Rtn verifyNameZh(@RequestParam("val") String nameZh, @RequestParam("id") Integer id){
         try {
             int count = menuService.verifyNameZh(nameZh, id);
@@ -122,7 +122,7 @@ public class MenuController extends BaseController{
      * 验证英文名称是否存在
      */
     @ResponseBody
-    @RequestMapping(value = "verifyNameEn", method = RequestMethod.GET)
+    @RequestMapping(value = "verifyNameEn", method = RequestMethod.POST)
     public Rtn verifyNameEn(@RequestParam("val") String nameEn, @RequestParam("id") Integer id){
         try {
             int count = menuService.verifyNameEn(nameEn, id);

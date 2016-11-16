@@ -23,12 +23,18 @@
 
     <!--验证英文名称是否存在-->
     <select id="verifyNameEn" resultType="_int">
-      SELECT COUNT(1) FROM t_menu WHERE name_en = #{nameEn} AND id != #{id}
+      SELECT COUNT(1) FROM t_menu WHERE name_en = #{nameEn}
+      <if test="id != null">
+        AND id != #{id}
+      </if>
     </select>
 
     <!--验证中文名称是否存在-->
     <select id="verifyNameZh" resultType="_int">
-      SELECT COUNT(1) FROM t_menu WHERE name_zh = #{nameZh} AND id != #{id}
+      SELECT COUNT(1) FROM t_menu WHERE name_zh = #{nameZh}
+      <if test="id != null">
+            AND id != #{id}
+      </if>
     </select>
 
     <!--根据主键查询菜单-->

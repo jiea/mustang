@@ -11,9 +11,21 @@
         <result column="operator" property="operator" jdbcType="INTEGER"/>
     </resultMap>
 
+    <!--验证角色名称是否重复-->
+    <select id="verifyRoleName" resultType="_int">
+      SELECT COUNT(1) FROM t_role WHERE role_name = #{roleName}
+      <if test="id != null">
+        AND id != #{id}
+      </if>
+    </select>
+
     <!--角色分页列表-->
     <select id="getRoleList" parameterType="role" resultType="role">
-        SELECT id, role_name, memo FROM t_role ORDER BY create_time
+        SELECT id, role_name, memo FROM t_role WHERE 1=1
+        <if test="roleName != null and roleName != ''">
+            AND role_name LIKE '${roleName}%'
+        </if>
+        ORDER BY create_time DESC
     </select>
 
     <!--新增-->

@@ -18,7 +18,7 @@
                 <td rowspan="2" width="15%">
                     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-016',width:70,height:30" onclick="roleSearch();">查&nbsp;询</a>
                     &nbsp;&nbsp;&nbsp;
-                    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-017',width:70,height:30" onclick="clearForm(empdg)">清&nbsp;空</a>
+                    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-017',width:70,height:30" onclick="clearForm(roledg)">清&nbsp;空</a>
                 </td>
             </tr>
         </table>
@@ -33,6 +33,8 @@
     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="edit();">编辑</a>
     <span style="color:#999">|</span>
     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-018',plain:true" onclick="save();">保存</a>
+    <span style="color:#999">|</span>
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-019',plain:true" onclick="reject();">取消</a>
     <span style="color:#999">|</span>
     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-006',plain:true" onclick="remove();">删除</a>
 </div>
@@ -87,13 +89,19 @@
 
     // search
     function roleSearch(){
-        getChanges();
-//        roledg.datagrid('load', serializeForm($('#roleSearch')));
-//        roledg.datagrid('clearSelections');
-//        roledg.datagrid('clearChecked');
+        roledg.datagrid('load', serializeForm($('#roleSearch')));
+        roledg.datagrid('clearSelections');
+        roledg.datagrid('clearChecked');
     }
 
-
+    // 添加
+    function append() {
+        if (editIndex != undefined) {
+            roledg.datagrid('rejectChanges', editIndex).datagrid('endEdit', editIndex);
+        }
+        roledg.datagrid('insertRow', {index: 0, row: {}}).datagrid('beginEdit', 0);
+        editIndex = 0;
+    }
 
     // 编辑
     function edit() {
@@ -104,9 +112,6 @@
                 return;
             } else {
                 var rowIndex = roledg.datagrid('getRowIndex', row[0]);
-                if (editIndex == rowIndex) {
-                    return;
-                }
                 if (editIndex != undefined) {
                     roledg.datagrid('rejectChanges', editIndex).datagrid('endEdit', editIndex);
                 }
@@ -120,7 +125,14 @@
 
     // 保存
     function save(){
-        roledg.datagrid("endEdit", editIndex);
+        roledg.datagrid('endEdit', editIndex);
+    }
+
+    // 取消编辑
+    function reject(){
+        editIndex = undefined;
+        roledg.datagrid('rejectChanges', editIndex);
+        roledg.datagrid("unselectAll");
     }
 
     // 双击行
@@ -136,13 +148,34 @@
     function onAfterEdit(){
         var changes = roledg.datagrid('getChanges');
         if(changes.length != 0){
-            $.post('${ctx}/role/', '', );
-        }
-    }
-
-    function accept(){
-        if(endEditing()){
-            roledg.datagrid();
+            var change = changes[0];
+            $.ajax({
+                url : '${ctx}/role/save',
+                type : 'post',
+                data : {changes : JSON.stringify(change)},
+                dataType : 'json',
+                beforeSend : function(){
+                    var bool = hasRepeat('${ctx}/role/verifyRoleName', change.roleName, change.id);
+                    console.log(bool);
+                    if(bool){
+                        MaskUtil.mask();
+                    }else{
+                        roledg.datagrid('rejectChanges', editIndex);
+                    }
+                    return bool;
+                },
+                complete : function(){
+                    MaskUtil.unmask();
+                },
+                success : function(data){
+                    if(data.success){
+                        roledg.datagrid('load').datagrid("unselectAll");
+                        showSuccessMsgSlide();
+                    }else{
+                        alertSysErrMsg();
+                    }
+                }
+            });
         }
     }
 

@@ -66,7 +66,7 @@ function hasRepeat(url, val, id){
 	var flag = true;
 	$.ajax({
 		url : url,
-		type : 'get',
+		type : 'post',
 		data : {val : val, id : id},
 		dataType : 'json',
 		async : false,

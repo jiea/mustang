@@ -22,7 +22,22 @@ public class RoleServiceImpl implements RoleService {
     @Override
     public Paging<Emp> getRoleList(Role role, Integer page, Integer rows) {
         PageHelper.startPage(page, rows);
-        List<Emp> list = roleMapper.getRoleList(roleMapper);
+        List<Emp> list = roleMapper.getRoleList(role);
         return new Paging<>(((Page)list).getTotal(), list);
+    }
+
+    @Override
+    public void updateRoleById(Role role) {
+        roleMapper.updateByPrimaryKeySelective(role);
+    }
+
+    @Override
+    public void add(Role role) {
+        roleMapper.insertSelective(role);
+    }
+
+    @Override
+    public int verifyRoleName(String roleName, Integer id) {
+        return roleMapper.verifyRoleName(roleName, id);
     }
 }
