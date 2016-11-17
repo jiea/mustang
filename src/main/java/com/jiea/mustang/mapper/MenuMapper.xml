@@ -1,33 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.jiea.mustang.dao.MenuMapper">
-    <resultMap id="BaseResultMap" type="com.jiea.mustang.entity.Menu">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="name_en" property="nameEn" jdbcType="VARCHAR"/>
-        <result column="name_zh" property="nameZh" jdbcType="VARCHAR"/>
-        <result column="menu_url" property="menuUrl" jdbcType="VARCHAR"/>
-        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
-        <result column="menu_icon" property="menuIcon" jdbcType="VARCHAR"/>
-        <result column="menu_sort" property="menuSort" jdbcType="INTEGER"/>
-        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
-        <result column="creator" property="creator" jdbcType="INTEGER"/>
-        <result column="operate_time" property="operateTime" jdbcType="TIMESTAMP"/>
-        <result column="operator" property="operator" jdbcType="INTEGER"/>
-        <result column="memo" property="memo" jdbcType="VARCHAR"/>
-    </resultMap>
-
     <!--根据主键删除菜单-->
     <delete id="deleteMenu" parameterType="int">
       DELETE FROM t_menu WHERE id = #{id}
     </delete>
-
-    <!--验证英文名称是否存在-->
-    <select id="verifyNameEn" resultType="_int">
-      SELECT COUNT(1) FROM t_menu WHERE name_en = #{nameEn}
-      <if test="id != null">
-        AND id != #{id}
-      </if>
-    </select>
 
     <!--验证中文名称是否存在-->
     <select id="verifyNameZh" resultType="_int">
@@ -40,7 +17,7 @@
     <!--根据主键查询菜单-->
     <select id="getMenuById" parameterType="int" resultType="menu">
       SELECT
-	    id, parent_id, name_en, name_zh, menu_url, menu_icon, menu_sort, memo
+	    id, parent_id, name_zh, menu_url, menu_icon, menu_sort, memo
 	  FROM
 	    t_menu m
 	  WHERE id = #{id}
@@ -49,7 +26,7 @@
     <!--查询所有菜单-->
     <select id="selectAllMenu" resultType="menu">
       SELECT
-	    id, parent_id, name_en, name_zh, menu_url, menu_icon, menu_sort, memo
+	    id, parent_id, name_zh, menu_url, menu_icon, menu_sort, memo
 	  FROM
 	    t_menu m
 	  ORDER BY m.menu_sort
@@ -67,7 +44,6 @@
     <select id="findMenuByEmpId" parameterType="integer" resultType="Menu">
   	SELECT 
 	  m.id,
-	  m.name_en,
 	  m.name_zh,
 	  m.menu_url,
 	  m.parent_id,
@@ -81,14 +57,12 @@
 	    WHERE ur.emp_id = #{empId}
 	  ORDER BY m.menu_sort
     </select>
+
     <insert id="insert" parameterType="menu">
         insert into t_menu
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="id != null">
                 id,
-            </if>
-            <if test="nameEn != null">
-                name_en,
             </if>
             <if test="nameZh != null">
                 name_zh,
@@ -125,9 +99,6 @@
             <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
-            <if test="nameEn != null">
-                #{nameEn,jdbcType=VARCHAR},
-            </if>
             <if test="nameZh != null">
                 #{nameZh,jdbcType=VARCHAR},
             </if>
@@ -163,9 +134,6 @@
     <update id="updateMenuById" parameterType="menu">
         update t_menu
         <set>
-            <if test="nameEn != null">
-                name_en = #{nameEn,jdbcType=VARCHAR},
-            </if>
             <if test="nameZh != null">
                 name_zh = #{nameZh,jdbcType=VARCHAR},
             </if>

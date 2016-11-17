@@ -43,11 +43,6 @@ public interface MenuMapper {
     int verifyNameZh(@Param("nameZh") String nameZh, @Param("id") Integer id);
 
     /**
-     * 验证英文名称是否存在
-     */
-    int verifyNameEn(@Param("nameEn") String nameEn, @Param("id") Integer id);
-
-    /**
      * 根据主键删除菜单
      */
     int deleteMenu(Integer id);

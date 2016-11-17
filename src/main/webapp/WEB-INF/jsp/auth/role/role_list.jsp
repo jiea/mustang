@@ -11,7 +11,7 @@
     <form id="roleSearch">
         <table class="searchForm datagrid-toolbar" width="100%">
             <tr>
-                <td class="tdR" width="8%">角色名称：</td>
+                <td class="tdR" width="10%">角色名称：</td>
                 <td class="tdL" width="20%">
                     <input type="text" class="easyui-textbox" id="roleName" name="roleName">
                 </td>
@@ -38,11 +38,9 @@
     <span style="color:#999">|</span>
     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-006',plain:true" onclick="remove();">删除</a>
 </div>
-<div id="roleAddModifyDialog"></div>
 
 <script type="text/javascript">
     var roledg;
-    var roleAddModifyDialog;
     // 当前编辑的行
     var editIndex = undefined;
     $(function(){
@@ -178,44 +176,6 @@
             });
         }
     }
-
-    // 添加
-    function toAddEmp(){
-        openEmpDialog('&nbsp;添加员工', 'icon icon-001', '${ctx}/emp/toAddEmp');
-    }
-
-    // 修改
-    function toModifyEmp(){
-        var rows = empdg.datagrid('getSelections');
-        if(rows.length > 0){
-            if(rows.length > 1){
-                showMsgSlide('请选择一条记录操作');
-                return;
-            }
-            openEmpDialog('&nbsp;修改员工', 'icon icon-002', '${ctx}/emp/toModifyEmp/'+rows[0].id);
-        }else{
-            showMsgSlide('请选择要修改的记录');
-        }
-    }
-
-    // 打开修改弹层
-    function openEmpDialog(titleType, imgType, url){
-        empAddModifyDialog = $('#empAddModifyDialog').dialog({
-            title : titleType,
-            iconCls : imgType,
-            width : '50%',
-            height : '325px',
-            maximizable : false,
-            draggable : false,
-            cache : false,
-            href : url,
-            closable : true,
-            border : true,
-            modal : true
-        });
-    }
-
-
 </script>
 </body>
 </html>

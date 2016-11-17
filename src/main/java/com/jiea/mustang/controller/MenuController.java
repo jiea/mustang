@@ -119,24 +119,6 @@ public class MenuController extends BaseController{
     }
 
     /**
-     * 验证英文名称是否存在
-     */
-    @ResponseBody
-    @RequestMapping(value = "verifyNameEn", method = RequestMethod.POST)
-    public Rtn verifyNameEn(@RequestParam("val") String nameEn, @RequestParam("id") Integer id){
-        try {
-            int count = menuService.verifyNameEn(nameEn, id);
-            if (count > 0) {
-                return new Rtn(false, "英文名称已存在");
-            }
-        } catch (Exception e) {
-            log.error(e.getMessage(), e);
-            return new Rtn(false, SystemConst.ERROR);
-        }
-        return new Rtn(true);
-    }
-
-    /**
      * 根据主键删除菜单
      */
     @ResponseBody

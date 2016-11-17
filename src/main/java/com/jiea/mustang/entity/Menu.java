@@ -4,8 +4,6 @@ import java.util.List;
 
 public class Menu extends Entity {
 
-	private String nameEn;
-
 	private String nameZh;
 
 	private String menuUrl;
@@ -19,14 +17,6 @@ public class Menu extends Entity {
 	private String memo;
 	
 	private List<Menu> children;
-
-	public String getNameEn() {
-		return nameEn;
-	}
-
-	public void setNameEn(String nameEn) {
-		this.nameEn = nameEn;
-	}
 
 	public String getNameZh() {
 		return nameZh;

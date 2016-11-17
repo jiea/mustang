@@ -72,11 +72,6 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public int verifyNameEn(String nameEn, Integer id) {
-        return menuMapper.verifyNameEn(nameEn, id);
-    }
-
-    @Override
     public int deleteMenu(Integer id) {
         return menuMapper.deleteMenu(id);
     }

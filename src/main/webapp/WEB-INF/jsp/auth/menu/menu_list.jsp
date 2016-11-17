@@ -12,7 +12,6 @@
 </div>
 <div id="toolbar">
     <a href="javascript:;" class="easyui-menubutton" data-options="menu:'#mm',iconCls:'icon icon-001',plain:true,width:120">添加</a>
-
     <div id="mm">
         <div onclick="toAddMenu('child');">子菜单</div>
         <div onclick="toAddMenu('parent');">根菜单</div>
@@ -22,10 +21,12 @@
     <span style="color:#999">|</span>
     <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon icon-006',plain:true" onclick="toDeleteMenu();">删除</a>
     <span style="color:#999">|</span>
+    <a href="javascript:void(0);" class="easyui-linkbutton" data-options="iconCls:'icon icon-015',plain:true" onclick="toAccredit();">授权</a>
     <a href="javascript:void(0);" id="ec" style="float:right;padding:5px;" onclick="expandCollapseAll();">折叠</a>
 </div>
 <div id="menuDialog"></div>
 <div id="iconDialog"></div>
+<div id="accreditDiglog"></div>
 <script type="text/javascript">
     var menutg;
     var iconDialog;
@@ -51,10 +52,6 @@
                 title: '中文名称',
                 width: '20%'
             }, {
-                field: 'nameEn',
-                title: '英文名称',
-                width: '10%'
-            }, {
                 field: 'menuUrl',
                 title: '菜单路径',
                 width: '20%'
@@ -77,10 +74,10 @@
             if (row == null) {
                 alertMsg('请选择一个节点', 'warning');
             } else {
-                openMenuDialog('添加子菜单', 'icon-001', '${ctx}/menu/openMenuDialog/add/child/' + row.id, '272px');
+                openMenuDialog('添加子菜单', 'icon icon-001', '${ctx}/menu/openMenuDialog/add/child/' + row.id);
             }
         } else if (addType == 'parent') {
-            openMenuDialog('添加根菜单', 'icon-001', '${ctx}/menu/openMenuDialog/add/parent/-1', '229px');
+            openMenuDialog('添加根菜单', 'icon icon-001', '${ctx}/menu/openMenuDialog/add/parent/-1');
         }
     }
 
@@ -91,9 +88,9 @@
             alertMsg('请选择一个节点', 'warning');
         } else {
             if (row.parentId == 0) {
-                openMenuDialog('修改菜单', 'icon-002', '${ctx}/menu/openMenuDialog/modify/parent/' + row.id, '229px');
+                openMenuDialog('修改菜单', 'icon icon-002', '${ctx}/menu/openMenuDialog/modify/parent/' + row.id, '229px');
             } else {
-                openMenuDialog('修改菜单', 'icon-002', '${ctx}/menu/openMenuDialog/modify/child/' + row.id, '272px');
+                openMenuDialog('修改菜单', 'icon icon-002', '${ctx}/menu/openMenuDialog/modify/child/' + row.id, '272px');
             }
         }
     }
@@ -136,12 +133,13 @@
         }
     }
 
-    function openMenuDialog(titleType, imgType, url, height) {
-        menuDialog = $("#menuDialog").dialog({
+    // 菜单新增修改弹层
+    function openMenuDialog(titleType, imgType, url) {
+        menuDialog = $('#menuDialog').dialog({
             title: titleType,
             iconCls: imgType,
             width: '50%',
-            height: height,
+            height: '229px',
             cache: false,
             href: url,
             closable: true,
@@ -149,8 +147,23 @@
         });
     }
 
+    // 授权弹层
+    function toAccredit(){
+        accreditDiglog = $('#accreditDiglog').dialog({
+            title: '资源授权',
+            iconCls: 'icon icon-015',
+            width: '60%',
+            height: '65%',
+            cache: false,
+            href: '${ctx}/role/toRoleResource',
+            closeable: true,
+            modal: true
+        });
+    }
+
+    // 折叠/展开
     function expandCollapseAll() {
-        var $ec = $("#ec");
+        var $ec = $('#ec');
         if ($ec.text() == '折叠') {
             menutg.treegrid('collapseAll');
             $ec.text('展开');
