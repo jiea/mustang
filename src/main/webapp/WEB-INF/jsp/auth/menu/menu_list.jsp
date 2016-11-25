@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <title>资源列表</title>
     <%@ include file="/WEB-INF/jsp/common/easyui.jsp" %>
-</head>i
-<body class="easyui-layout" fit="true" style="width: 100%;height: 100%;">
+</head>
+<body class="easyui-layout" data-options="fit:true" style="width: 100%;height: 100%;">
 <div data-options="region:'center',border:false" style="overflow: hidden;">
     <table id="menutg"></table>
 </div>
@@ -31,6 +31,7 @@
     var menutg;
     var iconDialog;
     var menuDialog;
+    var accreditDiglog;
     $(function () {
         menutg = $("#menutg").treegrid({
             url: '${path}/menu/getMenus',
