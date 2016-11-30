@@ -25,7 +25,7 @@
     </form>
 </div>
 <div data-options="region:'center', border:false">
-    <table id="roledg" style="width:100%;height:100%;"></table>
+    <table id="roledg"></table>
 </div>
 <div id="toolbar">
     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-001',plain:true" onclick="append();">添加</a>

@@ -40,7 +40,7 @@
             animate: true,
             collapsible: true,
             toolbar: "#toolbar",
-            singleSelect: true,
+            singleSelect: false,
             rownumbers: true,
             border: false,
             idField: 'id',
@@ -68,12 +68,12 @@
         });
     });
 
-    // add menu
+    // 新增菜单
     function toAddMenu(addType) {
         if (addType == 'child') {
             var row = menutg.treegrid('getSelected');
             if (row == null) {
-                alertMsg('请选择一个节点', 'warning');
+                showMsgSlide('请选择一个节点');
             } else {
                 openMenuDialog('添加子菜单', 'icon icon-001', '${ctx}/menu/openMenuDialog/add/child/' + row.id);
             }
@@ -82,26 +82,26 @@
         }
     }
 
-    // modify menu
+    // 修改菜单
     function toModifyMenu() {
-        var row = menutg.treegrid('getSelected');
-        if (row == null) {
-            alertMsg('请选择一个节点', 'warning');
-        } else {
+        var rows = menutg.treegrid('getSelections');
+        if (rows.length == 1) {
+            var row = rows[0];
             if (row.parentId == 0) {
                 openMenuDialog('修改菜单', 'icon icon-002', '${ctx}/menu/openMenuDialog/modify/parent/' + row.id, '229px');
             } else {
                 openMenuDialog('修改菜单', 'icon icon-002', '${ctx}/menu/openMenuDialog/modify/child/' + row.id, '272px');
             }
+        } else {
+            showMsgSlide('请选择一个节点进行修改');
         }
     }
 
-    // delete menu
+    // 删除菜单
     function toDeleteMenu() {
-        var row = menutg.treegrid('getSelected');
-        if (row == null) {
-            alertMsg('请选择一个节点', 'warning');
-        } else {
+        var rows = menutg.treegrid('getSelections');
+        if (rows.length == 1) {
+            var row = rows[0];
             if (menutg.treegrid('getChildren', row.id) != '') {
                 alertMsg('请先删除这个节点下的子节点', 'warning');
             } else {
@@ -131,6 +131,8 @@
                     }
                 });
             }
+        } else {
+            showMsgSlide('请选择一个节点进行删除');
         }
     }
 
@@ -153,8 +155,8 @@
         accreditDiglog = $('#accreditDiglog').dialog({
             title: '资源授权',
             iconCls: 'icon icon-015',
-            width: '60%',
-            height: '65%',
+            width: '55%',
+            height: '62%',
             cache: false,
             href: '${ctx}/role/toRoleResource',
             closeable: true,

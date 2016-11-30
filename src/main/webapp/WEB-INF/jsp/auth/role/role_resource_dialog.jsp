@@ -6,7 +6,7 @@
             <tr>
                 <td class="tdR" width="10%">角色名称：</td>
                 <td class="tdL" width="20%">
-                    <input type="text" class="easyui-textbox" id="roleName" name="roleName">
+                    <input type="text" class="easyui-textbox" id="roleName" name="roleName" placeholder="角色名称">
                 </td>
                 <td rowspan="2" width="15%">
                     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-016',width:70,height:30" onclick="roleSearch();">查&nbsp;询</a>
@@ -17,8 +17,19 @@
         </table>
     </form>
 </div>
-<div data-options="region:'center', border:false">
-    <table id="roledg" style="width:100%;height:100%;"></table>
+<div data-options="region:'center', border:false" style="height: 90%">
+    <table id="roledg"></table>
+</div>
+<div id="toolbar1">
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-001',plain:true" onclick="append();">授权</a>
+    <%--<span style="color:#999">|</span>--%>
+    <%--<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="edit();">编辑</a>--%>
+    <%--<span style="color:#999">|</span>--%>
+    <%--<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-018',plain:true" onclick="save();">保存</a>--%>
+    <%--<span style="color:#999">|</span>--%>
+    <%--<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-019',plain:true" onclick="reject();">取消</a>--%>
+    <%--<span style="color:#999">|</span>--%>
+    <%--<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-006',plain:true" onclick="remove();">删除</a>--%>
 </div>
 <script type="text/javascript">
     var roledg;
@@ -28,6 +39,7 @@
             method : 'get',
             pagination : true,
             fit : true,
+            toolbar : '#toolbar1',
             rownumbers : true,
             striped : true,
             border : false,
@@ -38,7 +50,7 @@
             },{
                 field : 'roleName',
                 title : '角色名称',
-                width : '30%',
+                width : '45%',
                 editor:{
                     type:'textbox',
                     options:{
@@ -48,7 +60,7 @@
             },{
                 field : 'memo',
                 title : '备注',
-                width : '30%',
+                width : '53%',
                 editor:{
                     type:'textbox',
                     options:{
