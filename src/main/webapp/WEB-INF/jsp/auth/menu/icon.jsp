@@ -57,7 +57,6 @@
         <a href="#"><li><img class="img icon icon-011"><p>icon-011</p></li></a>
         <a href="#"><li><img class="img icon icon-012"><p>icon-012</p></li></a>
         <a href="#"><li><img class="img icon icon-013"><p>icon-013</p></li></a>
-        <a href="#"><li><img class="img icon icon-014"><p>icon-014</p></li></a>
         <a href="#"><li><img class="img icon icon-015"><p>icon-015</p></li></a>
         <a href="#"><li><img class="img icon icon-016"><p>icon-016</p></li></a>
         <a href="#"><li><img class="img icon icon-017"><p>icon-017</p></li></a>

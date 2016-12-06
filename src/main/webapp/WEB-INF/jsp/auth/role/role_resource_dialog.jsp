@@ -21,7 +21,7 @@
     <table id="roledg"></table>
 </div>
 <div id="toolbar1">
-    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-001',plain:true" onclick="append();">授权</a>
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-010',plain:true" onclick="append();">授权</a>
     <%--<span style="color:#999">|</span>--%>
     <%--<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="edit();">编辑</a>--%>
     <%--<span style="color:#999">|</span>--%>

@@ -150,8 +150,28 @@
         });
     }
 
+    // 授权
+    function toAccredit() {
+        var rows = menutg.datagrid('getSelections');
+        if (rows.length <= 0) {
+            showMsgSlide("请选择授权的菜单");
+        } else {
+            var flag = true;
+            $.each(rows, function (i, val) {
+                // 授权时，不能选择根菜单
+                if (val.parentId == 0) {
+                    showMsgSlide("请勿对根菜单进行授权");
+                    flag = false;
+                }
+            });
+            if(flag){
+                accreditDialog();
+            }
+        }
+    }
+
     // 授权弹层
-    function toAccredit(){
+    function accreditDialog(){
         accreditDiglog = $('#accreditDiglog').dialog({
             title: '资源授权',
             iconCls: 'icon icon-015',

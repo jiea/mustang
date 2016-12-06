@@ -52,10 +52,6 @@
 	background:url('icons/search.png') no-repeat center center;
 }
 
-.icon-014{
-    background:url('icons/clear.png') no-repeat center center;
-}
-
 .icon-015{
     background-position: -360px -200px;
 }
@@ -75,6 +71,7 @@
 .icon-019{
     background-position: -60px -40px;
 }
+
 
 
 
