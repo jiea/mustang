@@ -9,6 +9,7 @@ import com.jiea.mustang.entity.Role;
 import com.jiea.mustang.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -35,7 +36,8 @@ public class RoleController extends BaseController{
      * 跳转至资源授权列表（角色——资源）
      */
     @RequestMapping(value = "toRoleResource", method = RequestMethod.GET)
-    public String toRoleResource(){
+    public String toRoleResource(@RequestParam("menuIds") String menuIds, Model model){
+        model.addAttribute("menuIds", menuIds);
         return "auth/role/role_resource_dialog";
     }
 

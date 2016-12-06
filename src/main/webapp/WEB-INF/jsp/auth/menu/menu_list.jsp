@@ -154,31 +154,33 @@
     function toAccredit() {
         var rows = menutg.datagrid('getSelections');
         if (rows.length <= 0) {
-            showMsgSlide("请选择授权的菜单");
+            showMsgSlide('请选择授权的菜单');
         } else {
             var flag = true;
-            $.each(rows, function (i, val) {
+            var menuIds = '';
+            $.each(rows, function (i, row) {
+                menuIds += row.id + ',';
                 // 授权时，不能选择根菜单
-                if (val.parentId == 0) {
-                    showMsgSlide("请勿对根菜单进行授权");
+                if (row.parentId == 0) {
+                    showMsgSlide('请勿对根菜单进行授权');
                     flag = false;
                 }
             });
             if(flag){
-                accreditDialog();
+                accreditDialog(menuIds.substring(0, menuIds.length-1));
             }
         }
     }
 
     // 授权弹层
-    function accreditDialog(){
+    function accreditDialog(menuIds){
         accreditDiglog = $('#accreditDiglog').dialog({
             title: '资源授权',
             iconCls: 'icon icon-015',
             width: '55%',
             height: '62%',
             cache: false,
-            href: '${ctx}/role/toRoleResource',
+            href: '${ctx}/role/toRoleResource?menuIds=' + menuIds,
             closeable: true,
             modal: true
         });

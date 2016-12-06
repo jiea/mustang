@@ -17,11 +17,11 @@
         </table>
     </form>
 </div>
-<div data-options="region:'center', border:false" style="height: 90%">
+<div data-options="region:'center', border:false" style="height: 87%">
     <table id="roledg"></table>
 </div>
 <div id="toolbar1">
-    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-010',plain:true" onclick="append();">授权</a>
+    <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-010',plain:true" onclick="accredit();">授权</a>
     <%--<span style="color:#999">|</span>--%>
     <%--<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="edit();">编辑</a>--%>
     <%--<span style="color:#999">|</span>--%>
@@ -72,11 +72,29 @@
         });
     });
 
-    // search
-    function roleSearch(){
+    // 查找
+    function roleSearch() {
         roledg.datagrid('load', serializeForm($('#roleSearch')));
         roledg.datagrid('clearSelections');
         roledg.datagrid('clearChecked');
+    }
+
+    // 授权
+    function accredit(){
+        var menuIds = '${menuIds}';
+        var rows = roledg.datagrid('getSelections');
+        if(rows.length <= 0){
+            showMsgSlide('请选择角色');
+        }else{
+            var roleIds = '';
+            $.each(rows, function(i, row){
+                roleIds += row.id + ',';
+            });
+            roleIds = roleIds.substring(0, roleIds.length-1);
+            $.post('${ctx}/menuRole/menuRoleRelation', {menuIds : menuIds, roleIds : roleIds}, function(data){
+
+            });
+        }
     }
 </script>
 </body>
