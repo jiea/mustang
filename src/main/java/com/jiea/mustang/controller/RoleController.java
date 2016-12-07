@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Controller
@@ -33,11 +34,11 @@ public class RoleController extends BaseController{
     }
 
     /**
-     * 跳转至资源授权列表（角色——资源）
+     * 跳转至资源授权列表（角色-资源）
      */
     @RequestMapping(value = "toRoleResource", method = RequestMethod.GET)
-    public String toRoleResource(@RequestParam("menuIds") String menuIds, Model model){
-        model.addAttribute("menuIds", menuIds);
+    public String toRoleResource(@RequestParam("menuId") String menuId, Model model){
+        model.addAttribute("menuId", menuId);
         return "auth/role/role_resource_dialog";
     }
 
@@ -102,4 +103,5 @@ public class RoleController extends BaseController{
         }
         return new Rtn(true);
     }
+
 }

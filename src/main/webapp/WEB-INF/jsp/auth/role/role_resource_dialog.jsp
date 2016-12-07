@@ -81,7 +81,7 @@
 
     // 授权
     function accredit(){
-        var menuIds = '${menuIds}';
+        var menuId = '${menuId}';
         var rows = roledg.datagrid('getSelections');
         if(rows.length <= 0){
             showMsgSlide('请选择角色');
@@ -91,9 +91,9 @@
                 roleIds += row.id + ',';
             });
             roleIds = roleIds.substring(0, roleIds.length-1);
-            $.post('${ctx}/menuRole/menuRoleRelation', {menuIds : menuIds, roleIds : roleIds}, function(data){
-
-            });
+            $.post('${ctx}/menuRole/menuRoleRelation', {menuId : menuId, roleIds : roleIds}, function(data){
+                console.info(data);
+            }, 'json');
         }
     }
 </script>

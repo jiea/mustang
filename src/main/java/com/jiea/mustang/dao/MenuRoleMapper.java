@@ -2,6 +2,8 @@ package com.jiea.mustang.dao;
 
 import com.jiea.mustang.entity.MenuRole;
 
+import java.util.List;
+
 public interface MenuRoleMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -14,4 +16,10 @@ public interface MenuRoleMapper {
     int updateByPrimaryKeySelective(MenuRole record);
 
     int updateByPrimaryKey(MenuRole record);
+
+    /**
+     * 批量插入
+     * @param menuRoles
+     */
+    void insertBatch(List<MenuRole> menuRoles);
 }

@@ -7,8 +7,8 @@ public interface MenuRoleService {
 
     /**
      * 菜单-角色 授权
-     * @param menuIds
+     * @param menuId
      * @param roleIds
      */
-    void menuRoleRelation(String menuIds, String roleIds);
+    void menuRoleRelation(String menuId, String roleIds);
 }
