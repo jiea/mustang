@@ -5,14 +5,13 @@ import com.jiea.mustang.dto.Rtn;
 import com.jiea.mustang.service.MenuRoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-/**
- * Created by jiea on 2016/12/6.
- */
+import java.util.List;
 
 @Controller
 @RequestMapping("menuRole")
@@ -22,7 +21,19 @@ public class MenuRoleController extends BaseController{
     private MenuRoleService menuRoleService;
 
     /**
-     * 菜单-角色 授权
+     * 跳转至资源授权列表（资源-角色）
+     */
+    @RequestMapping(value = "toRoleResource", method = RequestMethod.GET)
+    public String toRoleResource(@RequestParam("menuId") String menuId, Model model){
+        // 通过资源主键获取对应的角色主键
+        List<Integer> roleIds = menuRoleService.getRoleIdsByMenuId(Integer.parseInt(menuId));
+        model.addAttribute("menuId", menuId);
+        model.addAttribute("roleIds", roleIds);
+        return "auth/role/role_resource_dialog";
+    }
+
+    /**
+     * 资源-角色 授权
      * @return
      */
     @ResponseBody

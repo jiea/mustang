@@ -68,7 +68,13 @@
                     }
                 }
             }]],
-            onLoadError : function(){alertSysErrMsg();}
+            onLoadError : function(){alertSysErrMsg();},
+            onLoadSuccess : function(){
+                var roleIds = ${roleIds};
+                for(var i in roleIds){
+                    $('#roledg').datagrid('selectRecord', roleIds[i]);
+                }
+            }
         });
     });
 
@@ -92,7 +98,12 @@
             });
             roleIds = roleIds.substring(0, roleIds.length-1);
             $.post('${ctx}/menuRole/menuRoleRelation', {menuId : menuId, roleIds : roleIds}, function(data){
-                console.info(data);
+                if(data.success){
+                    showMsgSlide("授权成功");
+                    closeDialog(accreditDiglog);
+                }else{
+                    alertMsg(data.msg, 'error');
+                }
             }, 'json');
         }
     }

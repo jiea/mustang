@@ -33,4 +33,9 @@ public class MenuRoleServiceImpl implements MenuRoleService {
         }
         menuRoleMapper.insertBatch(menuRoles);
     }
+
+    @Override
+    public List<Integer> getRoleIdsByMenuId(Integer menuId) {
+        return menuRoleMapper.getRoleIdsByMenuId(menuId);
+    }
 }

@@ -9,6 +9,11 @@
         <result column="creator" property="creator" jdbcType="INTEGER"/>
     </resultMap>
 
+    <!--通过资源主键获取对应的角色主键-->
+    <select id="getRoleIdsByMenuId" parameterType="int" resultType="int">
+        SELECT role_id roleId FROM t_menu_role WHERE menu_id = #{menuId}
+    </select>
+
     <!--批量插入-->
     <insert id="insertBatch" parameterType="arraylist">
         INSERT INTO t_menu_role (id, role_id, menu_id, create_time, creator) VALUES

@@ -34,15 +34,6 @@ public class RoleController extends BaseController{
     }
 
     /**
-     * 跳转至资源授权列表（角色-资源）
-     */
-    @RequestMapping(value = "toRoleResource", method = RequestMethod.GET)
-    public String toRoleResource(@RequestParam("menuId") String menuId, Model model){
-        model.addAttribute("menuId", menuId);
-        return "auth/role/role_resource_dialog";
-    }
-
-    /**
      * 角色分页列表
      */
     @ResponseBody

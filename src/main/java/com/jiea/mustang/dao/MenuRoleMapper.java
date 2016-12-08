@@ -19,7 +19,14 @@ public interface MenuRoleMapper {
 
     /**
      * 批量插入
-     * @param menuRoles
+     * @param menuRoles 资源角色实体集合
      */
     void insertBatch(List<MenuRole> menuRoles);
+
+    /**
+     * 通过资源主键获取对应的角色主键
+     * @param menuId    资源主键
+     * @return          List<Integer>
+     */
+    List<Integer> getRoleIdsByMenuId(Integer menuId);
 }

@@ -168,7 +168,7 @@
             width: '55%',
             height: '62%',
             cache: false,
-            href: '${ctx}/role/toRoleResource?menuId=' + menuId,
+            href: '${ctx}/menuRole/toRoleResource?menuId=' + menuId,
             closeable: true,
             modal: true
         });
