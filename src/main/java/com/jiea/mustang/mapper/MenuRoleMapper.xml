@@ -9,6 +9,10 @@
         <result column="creator" property="creator" jdbcType="INTEGER"/>
     </resultMap>
 
+    <delete id="deleteByRoleId" parameterType="int">
+        DELETE FROM t_menu_role WHERE role_id = #{roleId}
+    </delete>
+
     <!--根据menuId删除资源角色关系-->
     <delete id="deleteByMenuId" parameterType="int">
         DELETE FROM t_menu_role WHERE menu_id = #{menuId}

@@ -25,4 +25,10 @@ public interface RoleService {
      * 验证角色名称是否重复
      */
     int verifyRoleName(String roleName, Integer id);
+
+    /**
+     * 删除角色
+     * @param roleId 角色主键
+     */
+    void deleteRole(Integer roleId);
 }

@@ -27,4 +27,10 @@ public interface RoleMapper {
      * 验证角色名称是否重复
      */
     int verifyRoleName(@Param("roleName") String roleName, @Param("id") Integer id);
+
+    /**
+     * 删除角色
+     * @param roleId 角色主键
+     */
+    void deleteRole(Integer roleId);
 }

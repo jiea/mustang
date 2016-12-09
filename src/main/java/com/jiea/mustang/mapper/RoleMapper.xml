@@ -11,6 +11,11 @@
         <result column="operator" property="operator" jdbcType="INTEGER"/>
     </resultMap>
 
+    <!--删除角色-->
+    <delete id="deleteRole" parameterType="int">
+      DELETE FROM t_role WHERE id = #{roleId}
+    </delete>
+
     <!--验证角色名称是否重复-->
     <select id="verifyRoleName" resultType="_int">
       SELECT COUNT(1) FROM t_role WHERE role_name = #{roleName}

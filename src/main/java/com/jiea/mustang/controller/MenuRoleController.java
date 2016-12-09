@@ -34,7 +34,7 @@ public class MenuRoleController extends BaseController{
 
     /**
      * 资源-角色 授权
-     * @return
+     * @return  Rtn
      */
     @ResponseBody
     @RequestMapping(value = "menuRoleRelation", method = RequestMethod.POST)

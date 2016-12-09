@@ -19,8 +19,14 @@ public interface MenuRoleMapper {
     List<Integer> getRoleIdsByMenuId(Integer menuId);
 
     /**
-     * 根据menuId删除资源角色关系
+     * 根据资源主键删除资源角色关系
      * @param menuId    资源主键
      */
     void deleteByMenuId(Integer menuId);
+
+    /**
+     * 根据角色主键删除资源角色关系
+     * @param roleId    角色主键
+     */
+    void deleteByRoleId(Integer roleId);
 }

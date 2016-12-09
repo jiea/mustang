@@ -106,7 +106,7 @@
         var row = roledg.datagrid('getSelections');
         if (row.length > 0) {
             if (row.length > 1) {
-                showMsgSlide('请选择一条记录进行编辑');
+                showMsgSlide('请选择一个角色进行编辑');
                 return;
             } else {
                 var rowIndex = roledg.datagrid('getRowIndex', row[0]);
@@ -117,7 +117,7 @@
                 roledg.datagrid('beginEdit', editIndex);
             }
         } else {
-            showMsgSlide('请选择要编辑的记录');
+            showMsgSlide('请选择要编辑的角色');
         }
     }
 
@@ -133,34 +133,36 @@
         roledg.datagrid("unselectAll");
     }
 
+    // 删除角色
     function remove(){
-        $.ajax({
-            url : '${ctx}/role/deleteRole',
-            type : 'post',
-            data : {changes : JSON.stringify(change)},
-            dataType : 'json',
-            beforeSend : function(){
-                var bool = hasRepeat('${ctx}/role/verifyRoleName', change.roleName, change.id);
-                console.log(bool);
-                if(bool){
+        var row = roledg.datagrid('getSelected');
+        if(row != null){
+            console.info(row.id);
+            $.ajax({
+                url : '${ctx}/role/deleteRole',
+                type : 'post',
+                data : {roleId: row.id},
+                dataType : 'json',
+                beforeSend : function(){
                     MaskUtil.mask();
-                }else{
-                    roledg.datagrid('rejectChanges', editIndex);
+                },
+                complete : function(){
+                    MaskUtil.unmask();
+                },
+                success : function(data){
+                    if(data.success){
+                        roledg.datagrid('load');
+                        showSuccessMsgSlide();
+                    }else{
+                        alertSysErrMsg();
+                    }
                 }
-                return bool;
-            },
-            complete : function(){
-                MaskUtil.unmask();
-            },
-            success : function(data){
-                if(data.success){
-                    roledg.datagrid('load').datagrid("unselectAll");
-                    showSuccessMsgSlide();
-                }else{
-                    alertSysErrMsg();
-                }
-            }
-        });
+            });
+        }else{
+            showMsgSlide("请选择要删除的角色");
+        }
+
+
     }
 
     // 双击行

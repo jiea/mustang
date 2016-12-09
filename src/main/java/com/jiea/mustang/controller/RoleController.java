@@ -9,13 +9,11 @@ import com.jiea.mustang.entity.Role;
 import com.jiea.mustang.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Controller
@@ -88,6 +86,23 @@ public class RoleController extends BaseController{
             if (count > 0) {
                 return new Rtn(false, "角色名称已存在");
             }
+        } catch (Exception e) {
+            log.error(e.getMessage(), e);
+            return new Rtn(false, SystemConst.ERROR);
+        }
+        return new Rtn(true);
+    }
+
+    /**
+     * 删除角色
+     * @param roleId 角色主键
+     * @return Rtn
+     */
+    @ResponseBody
+    @RequestMapping(value = "deleteRole", method = RequestMethod.POST)
+    public Rtn deleteRole(@RequestParam("roleId") Integer roleId) {
+        try {
+            roleService.deleteRole(roleId);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new Rtn(false, SystemConst.ERROR);
