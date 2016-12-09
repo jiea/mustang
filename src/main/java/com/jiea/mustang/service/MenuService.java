@@ -39,5 +39,5 @@ public interface MenuService {
     /**
      * 根据主键删除菜单
      */
-    int deleteMenu(Integer id);
+    void deleteMenu(Integer id);
 }

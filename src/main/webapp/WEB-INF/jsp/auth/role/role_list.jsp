@@ -133,6 +133,36 @@
         roledg.datagrid("unselectAll");
     }
 
+    function remove(){
+        $.ajax({
+            url : '${ctx}/role/deleteRole',
+            type : 'post',
+            data : {changes : JSON.stringify(change)},
+            dataType : 'json',
+            beforeSend : function(){
+                var bool = hasRepeat('${ctx}/role/verifyRoleName', change.roleName, change.id);
+                console.log(bool);
+                if(bool){
+                    MaskUtil.mask();
+                }else{
+                    roledg.datagrid('rejectChanges', editIndex);
+                }
+                return bool;
+            },
+            complete : function(){
+                MaskUtil.unmask();
+            },
+            success : function(data){
+                if(data.success){
+                    roledg.datagrid('load').datagrid("unselectAll");
+                    showSuccessMsgSlide();
+                }else{
+                    alertSysErrMsg();
+                }
+            }
+        });
+    }
+
     // 双击行
     function onDblClickRow(index) {
         if (editIndex != undefined) {

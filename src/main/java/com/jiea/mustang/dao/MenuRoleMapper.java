@@ -5,18 +5,6 @@ import com.jiea.mustang.entity.MenuRole;
 import java.util.List;
 
 public interface MenuRoleMapper {
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(MenuRole record);
-
-    int insertSelective(MenuRole record);
-
-    MenuRole selectByPrimaryKey(Integer id);
-
-    int updateByPrimaryKeySelective(MenuRole record);
-
-    int updateByPrimaryKey(MenuRole record);
-
     /**
      * 批量插入
      * @param menuRoles 资源角色实体集合
@@ -29,4 +17,10 @@ public interface MenuRoleMapper {
      * @return          List<Integer>
      */
     List<Integer> getRoleIdsByMenuId(Integer menuId);
+
+    /**
+     * 根据menuId删除资源角色关系
+     * @param menuId    资源主键
+     */
+    void deleteByMenuId(Integer menuId);
 }

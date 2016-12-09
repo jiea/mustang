@@ -125,10 +125,7 @@ public class MenuController extends BaseController{
     @RequestMapping(value = "deleteMenu", method = RequestMethod.POST)
     public Rtn deleteMenu(@RequestParam("id") Integer id){
         try {
-            int count = menuService.deleteMenu(id);
-            if(count <= 0){
-                return new Rtn(false, "删除菜单失败");
-            }
+            menuService.deleteMenu(id);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
             return new Rtn(false, SystemConst.ERROR);

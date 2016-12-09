@@ -41,7 +41,7 @@ public class MenuRoleController extends BaseController{
     public Rtn menuRoleRelation(@RequestParam("menuId") String menuId,
                                 @RequestParam("roleIds") String roleIds){
         try {
-            menuRoleService.menuRoleRelation(menuId, roleIds);
+            menuRoleService.menuRoleRelation(Integer.parseInt(menuId), roleIds);
             return new Rtn(true);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

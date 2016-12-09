@@ -97,14 +97,26 @@
                 roleIds += row.id + ',';
             });
             roleIds = roleIds.substring(0, roleIds.length-1);
-            $.post('${ctx}/menuRole/menuRoleRelation', {menuId : menuId, roleIds : roleIds}, function(data){
-                if(data.success){
-                    showMsgSlide("授权成功");
-                    closeDialog(accreditDiglog);
-                }else{
-                    alertMsg(data.msg, 'error');
+            $.ajax({
+                type: 'post',
+                url: '${ctx}/menuRole/menuRoleRelation',
+                data: {menuId: menuId, roleIds: roleIds},
+                dataType: 'json',
+                beforeSend: function () {
+                    MaskUtil.mask();
+                },
+                complete: function () {
+                    MaskUtil.unmask();
+                },
+                success: function (data) {
+                    if (data.success) {
+                        showMsgSlide("授权成功");
+                        closeDialog(accreditDiglog);
+                    } else {
+                        alertMsg(data.msg, 'error');
+                    }
                 }
-            }, 'json');
+            });
         }
     }
 </script>

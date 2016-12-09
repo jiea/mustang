@@ -3,6 +3,7 @@ package com.jiea.mustang.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.jiea.mustang.dao.MenuRoleMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,9 @@ public class MenuServiceImpl implements MenuService {
 	
 	@Autowired
 	private MenuMapper menuMapper;
+
+    @Autowired
+    private MenuRoleMapper menuRoleMapper;
 
     @Override
     public List<Menu> getLeftMenu() {
@@ -72,8 +76,10 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public int deleteMenu(Integer id) {
-        return menuMapper.deleteMenu(id);
+    public void deleteMenu(Integer id) {
+        menuMapper.deleteMenu(id);
+        // 删除资源与角色关系
+        menuRoleMapper.deleteByMenuId(id);
     }
 
     private List<Menu> getMenuList(List<Menu> menuList, int id) {
@@ -85,7 +91,6 @@ public class MenuServiceImpl implements MenuService {
                 menus.add(menu);
             }
         }
-
         return menus;
     }
 
