@@ -2,24 +2,11 @@ package com.jiea.mustang.entity;
 
 import java.util.Date;
 
-public class MenuRole {
-    private Integer id;
+public class MenuRole extends Entity {
 
     private Integer roleId;
 
     private Integer menuId;
-
-    private Date createTime;
-
-    private Integer creator;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public Integer getRoleId() {
         return roleId;
@@ -37,19 +24,12 @@ public class MenuRole {
         this.menuId = menuId;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public MenuRole() {
     }
 
-    public void setCreateTime(Date createTime) {
+    public MenuRole(Integer menuId, Date createTime, Integer creator) {
+        this.menuId = menuId;
         this.createTime = createTime;
-    }
-
-    public Integer getCreator() {
-        return creator;
-    }
-
-    public void setCreator(Integer creator) {
         this.creator = creator;
     }
 }

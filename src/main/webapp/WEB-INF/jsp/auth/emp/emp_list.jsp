@@ -54,9 +54,12 @@
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-034',plain:true" onclick="enabled();">启用</a>
 		<span style="color:#999">|</span>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-010',plain:true" onclick="toAccredit();">授权</a>
+		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-073',plain:true" onclick="openWorkGroupDialog();">设置工作组</a>
 	</div>
     <div id="empAddModifyDialog"></div>
+    <div id="accreditDiglog"></div>
     <script type="text/javascript">
         var empdg;
 		var empAddModifyDialog;
@@ -251,6 +254,30 @@
                 showMsgSlide('请选择要启用的记录');
             }
         }
+
+		// 授权
+		function toAccredit(){
+			var row = empdg.datagrid('getSelected');
+			if (row == null) {
+				showMsgSlide('请选择要授权的用户');
+			} else {
+				accreditDialog(row.id);
+			}
+		}
+
+		// 授权弹层
+		function accreditDialog(empId) {
+			accreditDiglog = $('#accreditDiglog').dialog({
+				title: '用户授权',
+				iconCls: 'icon icon-015',
+				width: '55%',
+				height: '62%',
+				cache: false,
+				href: '${ctx}/empRole/toEmpRole?empId=' + empId,
+				closeable: true,
+				modal: true
+			});
+		}
 	</script>
 </body>
 </html>

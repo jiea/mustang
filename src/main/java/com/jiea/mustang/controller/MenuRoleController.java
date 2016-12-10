@@ -38,10 +38,10 @@ public class MenuRoleController extends BaseController{
      */
     @ResponseBody
     @RequestMapping(value = "menuRoleRelation", method = RequestMethod.POST)
-    public Rtn menuRoleRelation(@RequestParam("menuId") String menuId,
+    public Rtn menuRoleRelation(@RequestParam("menuId") Integer menuId,
                                 @RequestParam("roleIds") String roleIds){
         try {
-            menuRoleService.menuRoleRelation(Integer.parseInt(menuId), roleIds);
+            menuRoleService.menuRoleRelation(menuId, roleIds);
             return new Rtn(true);
         } catch (Exception e) {
             log.error(e.getMessage(), e);

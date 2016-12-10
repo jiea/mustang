@@ -4,15 +4,15 @@ import java.util.Date;
 
 public class Entity {
 
-	private Integer id;
-	
-	private Date createTime;
+	protected Integer id;
 
-	private Integer creator;
+	protected Date createTime;
 
-	private Date operateTime;
+	protected Integer creator;
 
-	private Integer operator;
+	protected Date operateTime;
+
+	protected Integer operator;
 
 	public Integer getId() {
 		return id;

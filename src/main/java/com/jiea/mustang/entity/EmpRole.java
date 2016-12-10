@@ -1,5 +1,7 @@
 package com.jiea.mustang.entity;
 
+import java.util.Date;
+
 public class EmpRole extends Entity {
 
 	private Integer roleId;
@@ -22,4 +24,12 @@ public class EmpRole extends Entity {
 		this.empId = empId;
 	}
 
+	public EmpRole() {
+	}
+
+	public EmpRole(Integer empId, Date createTime, Integer creator) {
+		this.empId = empId;
+		this.createTime = createTime;
+		this.creator = creator;
+	}
 }

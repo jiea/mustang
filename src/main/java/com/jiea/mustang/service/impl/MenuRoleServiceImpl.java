@@ -23,11 +23,8 @@ public class MenuRoleServiceImpl implements MenuRoleService {
         List<MenuRole> menuRoles = new ArrayList<>();
         String[] roleIdArr = roleIds.split(",");
         for(String roleId : roleIdArr){
-            MenuRole menuRole = new MenuRole();
-            menuRole.setMenuId(menuId);
+            MenuRole menuRole = new MenuRole(menuId, new Date(), 1);
             menuRole.setRoleId(Integer.parseInt(roleId));
-            menuRole.setCreateTime(new Date());
-            menuRole.setCreator(1);
             menuRoles.add(menuRole);
         }
         menuRoleMapper.insertBatch(menuRoles);
