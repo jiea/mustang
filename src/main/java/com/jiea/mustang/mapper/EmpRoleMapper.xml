@@ -13,8 +13,8 @@
   <insert id="insertBatch" parameterType="arraylist">
     INSERT INTO t_emp_role (id, role_id, emp_id, create_time, creator) VALUES
     <foreach collection="list" item="item" separator=",">
-      #{id,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}, #{empId,jdbcType=INTEGER},
-      #{createTime,jdbcType=TIMESTAMP}, #{creator,jdbcType=INTEGER}
+      (#{item.id,jdbcType=INTEGER}, #{item.roleId,jdbcType=INTEGER}, #{item.empId,jdbcType=INTEGER},
+      #{item.createTime,jdbcType=TIMESTAMP}, #{item.creator,jdbcType=INTEGER})
     </foreach>
   </insert>
 
@@ -23,9 +23,14 @@
     SELECT role_id FROM t_emp_role WHERE emp_id = #{empId}
   </select>
 
+  <!--根据角色主键删除员工角色关系-->
+  <delete id="deleteByRoleId" parameterType="int">
+    DELETE FROM t_emp_role WHERE role_id = #{roleId}
+  </delete>
+
   <!--根据员工主键删除对应的员工角色关系-->
   <delete id="deleteByEmpId" parameterType="int">
-    DELETE FROM t_emp_role where emp_id = #{empId}
+    DELETE FROM t_emp_role WHERE emp_id = #{empId}
   </delete>
 
 </mapper>

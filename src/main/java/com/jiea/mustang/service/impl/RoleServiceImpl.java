@@ -2,6 +2,7 @@ package com.jiea.mustang.service.impl;
 
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
+import com.jiea.mustang.dao.EmpRoleMapper;
 import com.jiea.mustang.dao.MenuRoleMapper;
 import com.jiea.mustang.dao.RoleMapper;
 import com.jiea.mustang.dto.Paging;
@@ -22,6 +23,9 @@ public class RoleServiceImpl implements RoleService {
 
     @Autowired
     private MenuRoleMapper menuRoleMapper;
+
+    @Autowired
+    private EmpRoleMapper empRoleMapper;
 
     @Override
     public Paging<Emp> getRoleList(Role role, Integer page, Integer rows) {
@@ -50,5 +54,7 @@ public class RoleServiceImpl implements RoleService {
         roleMapper.deleteRole(roleId);
         // 根据角色主键删除资源角色关系
         menuRoleMapper.deleteByRoleId(roleId);
+        // 根据角色主键删除员工角色关系
+        empRoleMapper.deleteByRoleId(roleId);
     }
 }

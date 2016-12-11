@@ -24,4 +24,10 @@ public interface EmpRoleMapper {
 	 * @param empRoles	员工角色关系List
      */
 	void insertBatch(List<EmpRole> empRoles);
+
+	/**
+	 * 根据角色主键删除员工角色关系
+	 * @param roleId 角色主键
+     */
+	void deleteByRoleId(Integer roleId);
 }

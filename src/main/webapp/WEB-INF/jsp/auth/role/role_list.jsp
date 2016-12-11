@@ -13,7 +13,7 @@
             <tr>
                 <td class="tdR" width="10%">角色名称：</td>
                 <td class="tdL" width="20%">
-                    <input type="text" class="easyui-textbox" id="roleName" name="roleName">
+                    <input type="text" class="easyui-textbox" id="roleName" name="roleName" placeholder="角色名称">
                 </td>
                 <td rowspan="2" width="15%">
                     <a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-016',width:70,height:30" onclick="roleSearch();">查&nbsp;询</a>
@@ -107,7 +107,6 @@
         if (row.length > 0) {
             if (row.length > 1) {
                 showMsgSlide('请选择一个角色进行编辑');
-                return;
             } else {
                 var rowIndex = roledg.datagrid('getRowIndex', row[0]);
                 if (editIndex != undefined) {
@@ -137,25 +136,28 @@
     function remove(){
         var row = roledg.datagrid('getSelected');
         if(row != null){
-            console.info(row.id);
-            $.ajax({
-                url : '${ctx}/role/deleteRole',
-                type : 'post',
-                data : {roleId: row.id},
-                dataType : 'json',
-                beforeSend : function(){
-                    MaskUtil.mask();
-                },
-                complete : function(){
-                    MaskUtil.unmask();
-                },
-                success : function(data){
-                    if(data.success){
-                        roledg.datagrid('load');
-                        showSuccessMsgSlide();
-                    }else{
-                        alertSysErrMsg();
-                    }
+            $.messager.confirm('确认', '是否删除 "<span style="color: red;">'+row.roleName+'</span>" 角色？', function (r) {
+                if (r) {
+                    $.ajax({
+                        url : '${ctx}/role/deleteRole',
+                        type : 'post',
+                        data : {roleId: row.id},
+                        dataType : 'json',
+                        beforeSend : function(){
+                            MaskUtil.mask();
+                        },
+                        complete : function(){
+                            MaskUtil.unmask();
+                        },
+                        success : function(data){
+                            if(data.success){
+                                roledg.datagrid('load');
+                                showSuccessMsgSlide();
+                            }else{
+                                alertSysErrMsg();
+                            }
+                        }
+                    });
                 }
             });
         }else{
