@@ -136,7 +136,7 @@
     function remove(){
         var row = roledg.datagrid('getSelected');
         if(row != null){
-            $.messager.confirm('确认', '是否删除 "<span style="color: red;">'+row.roleName+'</span>" 角色？', function (r) {
+            $.messager.confirm('确认', '是否删除 <span style="color: red;">'+row.roleName+'</span> 角色？', function (r) {
                 if (r) {
                     $.ajax({
                         url : '${ctx}/role/deleteRole',

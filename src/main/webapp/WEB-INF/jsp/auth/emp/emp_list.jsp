@@ -46,15 +46,13 @@
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-002',plain:true" onclick="toModifyEmp();">修改</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-036',plain:true" onclick="authorization();">用户授权</a>
-		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-003',plain:true" onclick="resetPassword();">密码重置</a>
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-033',plain:true" onclick="disable();">停用</a>
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-034',plain:true" onclick="enabled();">启用</a>
 		<span style="color:#999">|</span>
-		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-010',plain:true" onclick="toAccredit();">授权</a>
+		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon icon-015',plain:true" onclick="toAccredit();">授权</a>
 		<span style="color:#999">|</span>
 		<a href="javascript:;" class="easyui-linkbutton" data-options="iconCls:'icon-073',plain:true" onclick="openWorkGroupDialog();">设置工作组</a>
 	</div>

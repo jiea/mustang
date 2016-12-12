@@ -152,11 +152,13 @@
 
     // 授权
     function toAccredit() {
-        var rows = menutg.datagrid('getSelected');
-        if (rows == null) {
+        var row = menutg.datagrid('getSelected');
+        if (row == null) {
             showMsgSlide('请选择授权的菜单');
+        } else if (row.parentId == '0') {
+            showMsgSlide('请勿对根菜单授权');
         } else {
-            accreditDialog(rows.id);
+            accreditDialog(row.id);
         }
     }
 
