@@ -62,12 +62,13 @@
         <a href="#"><li><img class="img icon icon-017"><p>icon-017</p></li></a>
         <a href="#"><li><img class="img icon icon-018"><p>icon-018</p></li></a>
         <a href="#"><li><img class="img icon icon-019"><p>icon-019</p></li></a>
+        <a href="#"><li><img class="img icon icon-020"><p>icon-020</p></li></a>
+        <a href="#"><li><img class="img icon icon-021"><p>icon-021</p></li></a>
 
 
 
 
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/star.png"><p>icon-038</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/stop.png"><p>icon-039</p></li></a>
+<%--        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/stop.png"><p>icon-039</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/sitemap_color.png"><p>icon-040</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/flag_red.png"><p>icon-041</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/email.png"><p>icon-042</p></li></a>
@@ -96,7 +97,7 @@
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/application.png"><p>icon-072</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/book.png"><p>icon-075</p></li></a>
         <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/out.png"><p>icon-079</p></li></a>
-        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/heart.png"><p>icon-080</p></li></a>
+        <a href="#"><li><img class="img" src="${ctx}/static/js/jquery-easyui-1.4.2/themes/icons/heart.png"><p>icon-080</p></li></a>--%>
     </ul>
 </div>
 </body>
