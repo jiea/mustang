@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <!--核心线程数 默认值1-->
+        <property name="corePoolSize" value="4"/>
+        <!--最大线程数 默认值2147483647-->
+        <property name="maxPoolSize" value="5"/>
+        <!--队列长度 默认值2147483647-->
+        <property name="queueCapacity" value="10"/>
+        <!--线程空闲的时间 默认值60-->
+        <property name="keepAliveSeconds" value="60"/>
+        <!--任务拒绝策略 默认值AbortPolicy(丢弃任务并抛出RejectedExecutionException异常)-->
+        <property name="rejectedExecutionHandler">
+            <bean class="java.util.concurrent.ThreadPoolExecutor$CallerRunsPolicy"></bean>
+        </property>
+    </bean>
+
+</beans>

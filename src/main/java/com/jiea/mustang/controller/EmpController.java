@@ -6,7 +6,9 @@ import com.jiea.mustang.dto.Paging;
 import com.jiea.mustang.dto.Rtn;
 import com.jiea.mustang.entity.Emp;
 import com.jiea.mustang.service.EmpService;
+import com.jiea.mustang.task.TestTask;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +21,9 @@ public class EmpController extends BaseController {
 
     @Autowired
     private EmpService empService;
+
+    @Autowired
+    private ThreadPoolTaskExecutor taskExecutor;
 
     /**
      * 跳转至员工列表
@@ -36,6 +41,7 @@ public class EmpController extends BaseController {
     public Paging<Emp> list(@RequestParam("page") Integer page, @RequestParam("rows") Integer rows, Emp emp) {
         Paging<Emp> paging = null;
         try {
+            taskExecutor.execute(new TestTask());
             paging = empService.getEmpList(emp, page, rows);
         } catch (Exception e) {
             log.error(e.getMessage(), e);
