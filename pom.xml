@@ -141,7 +141,15 @@
 			<version>2.6</version>
 		</dependency>
 
-        <!--fastjosn-->
+		<!-- https://mvnrepository.com/artifact/org.bouncycastle/bcprov-jdk15on  加解密 -->
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.56</version>
+		</dependency>
+
+
+		<!--fastjosn-->
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>fastjson</artifactId>
