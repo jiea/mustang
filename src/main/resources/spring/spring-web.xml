@@ -15,6 +15,7 @@
 
     <!-- 基于@AspectJ切面的驱动器 -->
     <aop:aspectj-autoproxy />
+    <context:component-scan base-package="com.jiea.mustang.aspect" />
 
 	<!-- 静态资源默认servlet配置 -->
 	<mvc:default-servlet-handler />
