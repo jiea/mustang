@@ -2,16 +2,12 @@ package com.jiea.mustang.aspect;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 @Aspect
-@Component
 public class TestAspect {
 
     protected final Logger log = LoggerFactory.getLogger(TestAspect.class);
@@ -22,9 +18,9 @@ public class TestAspect {
     @Around("testAspect()")
     public Object around(ProceedingJoinPoint pjp){
         String className = pjp.getSignature().getDeclaringTypeName();
-        String metodName = pjp.getSignature().getName();
+        String methodName = pjp.getSignature().getName();
 
-        log.info("环绕通知开始：{}.{}()", className, metodName);
+        log.info("环绕通知开始：{}.{}()", className, methodName);
         Object o = null;
         try {
             o = pjp.proceed();
@@ -32,13 +28,23 @@ public class TestAspect {
             log.error(e.getMessage(), e);
         }
 
-        log.info("环绕通知结束：{}.{}()", className, metodName);
+        log.info("环绕通知结束：{}.{}()", className, methodName);
         return o;
     }
 
     @Before("testAspect()")
-    public Object before(JoinPoint jp){
-        return  null;
+    public void before(JoinPoint jp){
+
+    }
+
+    @After("testAspect()")
+    public void after(JoinPoint jp){
+
+    }
+
+    @AfterReturning("testAspect()")
+    public void AfterReturning(JoinPoint jp){
+
     }
 
 }
