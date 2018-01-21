@@ -13,6 +13,8 @@
 	<context:component-scan base-package="com.jiea.mustang.service" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 	</context:component-scan>
+
+	<context:component-scan base-package="com.jiea.mustang.biz"/>
 	
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

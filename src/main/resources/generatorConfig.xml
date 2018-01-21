@@ -2,7 +2,7 @@
 <!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
 <generatorConfiguration>
 	<!-- 指定数据库连接驱动jar -->
-	<classPathEntry location="E:\maven\repository\mysql\mysql-connector-java\5.1.25\mysql-connector-java-5.1.25.jar" />
+	<classPathEntry location="E:\maven\repo\mysql\mysql-connector-java\5.1.39\mysql-connector-java-5.1.39.jar" />
 	<!-- 一个数据库指定一个context -->
 	<context id="mustang" targetRuntime="MyBatis3">
 		<commentGenerator>
@@ -12,7 +12,7 @@
 			<property name="suppressDate" value="true" />
 		</commentGenerator>
 		<!-- jdbc 连接 -->
-		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mustang_dev" userId="root"
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/mustang" userId="root"
 			password="root" />
 
 		<!-- 默认false，把JDBC DECIMAL 和 NUMERIC 类型解析为 Integer true，把JDBC DECIMAL 和 NUMERIC 类型解析为java.math.BigDecimal -->
@@ -21,15 +21,15 @@
 		</javaTypeResolver>
 
 		<!-- 生成实体类地址 -->
-		<javaModelGenerator targetPackage="com.jiea.mustang.entity" targetProject="mustang" />
+		<javaModelGenerator targetPackage="com.jiea.mustang.entity" targetProject="src/main/java" />
 		<!-- 生成Mapper地址 -->
-		<sqlMapGenerator targetPackage="com.jiea.mustang.mapper" targetProject="mustang" />
+		<sqlMapGenerator targetPackage="com.jiea.mustang.mapper" targetProject="src/main/java" />
 		<!-- 生成dao接口地址 -->
-		<javaClientGenerator targetPackage="com.jiea.mustang.dao" targetProject="mustang" type="XMLMAPPER" />
+		<javaClientGenerator targetPackage="com.jiea.mustang.dao" targetProject="src/main/java" type="XMLMAPPER" />
 
 		<!-- 配置表信息 -->
 		<!-- schema数据库名 tableName表名 domainObjectName实体类名 enable*ByExample 是否生成 example类 -->
-		<table schema="mustang_dev" tableName="t_login_log" domainObjectName="LoginLog" enableCountByExample="false"
+		<table schema="mustang" tableName="t_test_transaction" domainObjectName="TestTransaction" enableCountByExample="false"
 			enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false" />
 
 	</context>
